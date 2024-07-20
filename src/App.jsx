@@ -1,14 +1,16 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from "recoil";
 import "./App.css";
-
-import { RecoilRoot, atom, selector, useRecoilState, useRecoilValue } from "recoil";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-import Home from "./pages/Home";
+import AppRouter from "./router/router.jsx";
 
 const queryClient = new QueryClient();
 
@@ -17,7 +19,9 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools />
       <RecoilRoot>
-        <Home />
+        <main>
+          <AppRouter /> 
+        </main>
       </RecoilRoot>
     </QueryClientProvider>
   );

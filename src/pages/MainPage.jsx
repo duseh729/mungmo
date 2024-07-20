@@ -1,7 +1,7 @@
 import { useRecoilState } from "recoil";
 import { indexState } from "../recoil/temp";
 
-const Home = () => {
+const Main = () => {
   const [temp, setTemp] = useRecoilState(indexState);
 
   return (
@@ -12,4 +12,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Main;
