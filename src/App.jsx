@@ -1,10 +1,5 @@
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-} from "recoil";
+import { RecoilRoot, atom, selector, useRecoilState, useRecoilValue } from "recoil";
+
 import "./App.css";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -19,8 +14,10 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools />
       <RecoilRoot>
-        <main>
-          <AppRouter /> 
+        <main style={{ backgroundColor: "tomato" }}>
+          <div id="web-view">
+            <AppRouter />
+          </div>
         </main>
       </RecoilRoot>
     </QueryClientProvider>

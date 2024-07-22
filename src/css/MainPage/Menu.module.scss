@@ -1,0 +1,11 @@
+.menuWrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 12px;
+
+  div{
+    flex:1;
+  }
+}
+
