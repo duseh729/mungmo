@@ -1,6 +1,6 @@
 import styles from "../../css/MainPage/Header.module.scss";
 
-const Header = () => {
+const MainHeader = () => {
   return (
     <header className={styles.headerContainer}>
       <div className={styles.logoWrapper}>
@@ -15,4 +15,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default MainHeader;

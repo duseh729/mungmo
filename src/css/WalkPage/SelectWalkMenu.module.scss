@@ -1,0 +1,19 @@
+.buttonWrapper{
+  border-radius: 20px;
+  padding: 4px;
+  margin-top: 10px;
+  margin-bottom: 14px;
+
+  button{
+   border-radius: 20px; 
+
+   &:first-child{
+    margin-right: 8px;
+   }
+  }
+}
+
+.clicked{
+  background-color: white;
+  color: black;
+}

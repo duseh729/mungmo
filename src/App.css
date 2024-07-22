@@ -3,14 +3,13 @@ h1,
 p {
   margin: 0;
 }
-
 button{
   border: 0;
   background-color: transparent;
 }
 
 .container {
-  padding: 16px;
+  padding: 12px 16px;
 }
 
 #web-view {
@@ -36,7 +35,7 @@ body{
 }
 
 .letter-spacing8{
-  letter-spacing:-3px;
+  letter-spacing:-2px;
 }
 .letter-spacing2{
   letter-spacing:-1px;
