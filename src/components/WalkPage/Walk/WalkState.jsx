@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
-import { dogInfoState } from "../../recoil/dog";
-import { color } from "../../constant/style";
+import { dogInfoState } from "../../../recoil/dog";
+import { color } from "../../../constant/style";
 
 const WalkState = () => {
   const [dogInfo, setDogInfo] = useRecoilState(dogInfoState);

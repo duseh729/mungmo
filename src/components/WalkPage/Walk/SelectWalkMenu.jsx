@@ -1,6 +1,6 @@
-import { color } from "../../constant/style";
+import { color } from "../../../constant/style";
 
-import styles from "../../css/WalkPage/SelectWalkMenu.module.scss";
+import styles from "../../../css/WalkPage/SelectWalkMenu.module.scss";
 
 const SelectWalkMenu = ({ walkMenu, walkMenuHandler }) => {
   const menu = [

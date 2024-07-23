@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 
 import { useRecoilState, useRecoilValue } from "recoil"
-import { totalSecondState, walkTimeState } from "../../recoil/walk"
-import { dogInfoState } from "../../recoil/dog";
+import { totalSecondState, walkTimeState } from "../../../recoil/walk"
+import { dogInfoState } from "../../../recoil/dog";
 
-import { color } from "../../constant/style";
+import { color } from "../../../constant/style";
 
 const Progress = ()=>{
   const [walkTime, setWalkTime] = useRecoilState(walkTimeState);
   const [dogInfo, setDogInfo] = useRecoilState(dogInfoState);
   const totalSeconds = useRecoilValue(totalSecondState);
-  // const totalSeconds = 1 * 60; // 분을 초로 변환
+  // const totalSeconds = 10; // 분을 초로 변환
 
   const progress = (walkTime / totalSeconds) * 100;
 

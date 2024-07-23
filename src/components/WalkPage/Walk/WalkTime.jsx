@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
-import { walkTimeState } from "../../recoil/walk";
-import { color } from "../../constant/style";
+import { walkTimeState } from "../../../recoil/walk";
+import { color } from "../../../constant/style";
 
 const WalkTime = () => {
   const [walkTime, setWalkTime] = useRecoilState(walkTimeState);

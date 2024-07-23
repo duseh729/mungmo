@@ -17,5 +17,10 @@ export const totalSecondState = selector({
 
 export const nowWalkState = atom({
   key: "nowWalkState",
+  default: {first: false, now: false}
+})
+
+export const walkModalState = atom({
+  key: "walkModalState",
   default: false
 })

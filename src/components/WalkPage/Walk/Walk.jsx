@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { dogNameState } from "../../recoil/dog";
-import { nowWalkState, totalSecondState, walkTimeState } from "../../recoil/walk";
+import { dogNameState } from "../../../recoil/dog";
+import { nowWalkState, totalSecondState, walkTimeState } from "../../../recoil/walk";
 
-import { color } from "../../constant/style";
+import { color } from "../../../constant/style";
 
 import WalkTime from "./WalkTime";
 import Progress from "./Progress";
@@ -14,27 +14,27 @@ const Walk = () => {
   const [walkTime, setWalkTime] = useRecoilState(walkTimeState);
   const [nowWalk, setNowWalk] = useRecoilState(nowWalkState);
   const totalSeconds = useRecoilValue(totalSecondState);
+  // const totalSeconds = 10;
 
-  const [walkState, setWalkState] = useState("산책전");
+  const [walkState, setWalkState] = useState();
+  useEffect(()=>{
+    setWalkState(nowWalk.first ? "산책중" : "산책전")
+  }, [nowWalk])
+
 
   useEffect(() => {
     let interval;
-    if (nowWalk) {
+    if (nowWalk.now) {
       interval = setInterval(() => {
         setWalkTime(prevSeconds => {
-          if (prevSeconds < totalSeconds) {
-            return prevSeconds + 1;
-          } else {
-            clearInterval(interval);
-            return prevSeconds;
-          }
+          return prevSeconds + 1;
         });
       }, 1000);
     } else if (!nowWalk && walkTime !== 0) {
       clearInterval(interval);
     }
     return () => clearInterval(interval);
-  }, [nowWalk, totalSeconds, setWalkTime]);
+  }, [nowWalk.now, totalSeconds, setWalkTime]);
 
   return (
     <div>
