@@ -17,10 +17,23 @@ export const totalSecondState = selector({
 
 export const nowWalkState = atom({
   key: "nowWalkState",
-  default: {first: false, now: false, finish: false}
-})
+  default: { first: false, now: false, finish: false },
+});
 
 export const walkModalState = atom({
   key: "walkModalState",
-  default: false
-})
+  default: false,
+});
+
+export const walkHistoryState = atom({
+  key: "walkHistoryState",
+  default: [
+    { date: new Date(2024, 6, 10), walkData: [["16:30:13", "17:00:00"], ["16:30:13", "17:00:00"], ["16:30:13", "17:00:00"], ["16:30:13", "17:00:00"]] }, // 2024년 7월 25일
+    { date: new Date(2024, 5, 15), walkData: [["16:30:00", "17:00:00"]] }, // 2024년 6월 15일
+  ],
+});
+
+export const pickedDateState = atom({
+  key: "pickDateState",
+  default: new Date(),
+});

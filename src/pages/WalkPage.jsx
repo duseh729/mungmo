@@ -11,6 +11,7 @@ import Modal from "../components/common/Modal";
 
 import { useRecoilState } from "recoil";
 import { nowWalkState, walkModalState } from "../recoil/walk";
+import WalkHistoryComponent from "../components/WalkPage/Calendar/WalkHistoryComponent";
 
 const WalkPage = () => {
   const [walkMenu, setWalkMenu] = useState("walk");
@@ -69,6 +70,7 @@ const WalkPage = () => {
       {walkMenu == "calendar" &&  <CalendarComponent />}
 
       {walkMenu === "walk" && !nowWalk.finish && <StartStop />}
+      {walkMenu === 'calendar' && <WalkHistoryComponent />}
     </div>
   );
 };

@@ -5,6 +5,7 @@ export const color = {
   primaryColor30: "#0C86F730",
   lightPrimaryColor: "#73B8F7",
   gray900: "#232426",
+  gray800: "#43484E",
   gray700: "#6A6D73",
   gray600: "#8D9299",
   gray500: "#B0B6C0",
