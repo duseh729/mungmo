@@ -5,7 +5,7 @@ import { color } from "../constant/style";
 import Header from "../components/common/Header";
 import SelectWalkMenu from "../components/WalkPage/Walk/SelectWalkMenu";
 import Walk from "../components/WalkPage/Walk/Walk";
-import Calendar from "../components/WalkPage/Calendar";
+import CalendarComponent from "../components/WalkPage/Calendar/CalendarComponent";
 import StartStop from "../components/WalkPage/Walk/StartStop";
 import Modal from "../components/common/Modal";
 
@@ -17,7 +17,7 @@ const WalkPage = () => {
   const [isOpen, setIsOpen] = useRecoilState(walkModalState);
   const [nowWalk, setNowWalk] = useRecoilState(nowWalkState);
 
-  const walkMenuHandler = menu => {
+  const walkMenuHandler = (menu) => {
     setWalkMenu(menu);
   };
 
@@ -25,7 +25,10 @@ const WalkPage = () => {
     <div
       className="container"
       style={{
-        background: `linear-gradient(to bottom, ${color.primaryColor00} 0%, ${color.primaryColor01} 49%, ${color.primaryColor30} 100%)`,
+        background:
+          walkMenu === "walk"
+            ? `linear-gradient(to bottom, ${color.primaryColor00} 0%, ${color.primaryColor01} 49%, ${color.primaryColor30} 100%)`
+            : `linear-gradient(to bottom, ${color.bg200} 0%, ${color.bg201} 49%, ${color.bg230} 100%)`,
         position: "relative",
       }}
     >
@@ -41,7 +44,7 @@ const WalkPage = () => {
             text: "끝내기",
             onClick: () => {
               setIsOpen(false);
-              setNowWalk({first: false, now: false, finish: true});
+              setNowWalk({ first: false, now: false, finish: true });
             },
           }}
         >
@@ -61,8 +64,9 @@ const WalkPage = () => {
         }}
       >
         <SelectWalkMenu walkMenu={walkMenu} walkMenuHandler={walkMenuHandler} />
-        {walkMenu === "walk" ? <Walk /> : <Calendar />}
+        {walkMenu === "walk" && <Walk />}
       </div>
+      {walkMenu == "calendar" &&  <CalendarComponent />}
 
       {walkMenu === "walk" && !nowWalk.finish && <StartStop />}
     </div>

@@ -10,6 +10,10 @@ export const color = {
   gray500: "#B0B6C0",
   gray200: "#E0E2E6",
   gray100: "#F6F7F9",
+  bg2: "#0CC4F7",
+  bg200: "#0CC4F700",
+  bg201: "#0CC4F701",
+  bg230: "#0CC4F730"
 };
 
 export const font = {
