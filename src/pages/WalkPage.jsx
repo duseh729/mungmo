@@ -10,11 +10,12 @@ import StartStop from "../components/WalkPage/Walk/StartStop";
 import Modal from "../components/common/Modal";
 
 import { useRecoilState } from "recoil";
-import { walkModalState } from "../recoil/walk";
+import { nowWalkState, walkModalState } from "../recoil/walk";
 
 const WalkPage = () => {
   const [walkMenu, setWalkMenu] = useState("walk");
   const [isOpen, setIsOpen] = useRecoilState(walkModalState);
+  const [nowWalk, setNowWalk] = useRecoilState(nowWalkState);
 
   const walkMenuHandler = menu => {
     setWalkMenu(menu);
@@ -40,6 +41,7 @@ const WalkPage = () => {
             text: "끝내기",
             onClick: () => {
               setIsOpen(false);
+              setNowWalk({first: false, now: false, finish: true});
             },
           }}
         >
@@ -62,7 +64,7 @@ const WalkPage = () => {
         {walkMenu === "walk" ? <Walk /> : <Calendar />}
       </div>
 
-      {walkMenu === "walk" && <StartStop />}
+      {walkMenu === "walk" && !nowWalk.finish && <StartStop />}
     </div>
   );
 };

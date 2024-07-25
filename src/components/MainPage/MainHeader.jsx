@@ -4,7 +4,7 @@ const MainHeader = () => {
   return (
     <header className={styles.headerContainer}>
       <div className={styles.logoWrapper}>
-        <img src="/img/logos/logoMedium.png" alt="" />
+        <img src="/img/logos/logo-medium.png" alt="" />
       </div>
 
       <div className={styles.iconsWrapper}>

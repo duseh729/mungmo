@@ -51,7 +51,7 @@ const StartStop = () => {
             setNowWalk({ first: true, now: true });
           }}
         >
-          <img src="/img/button/firstStart.png" alt="" />
+          <img src="/img/button/first-start.png" alt="" />
         </button>
       )}
     </div>
