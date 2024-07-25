@@ -13,10 +13,14 @@ import { useRecoilState } from "recoil";
 import { nowWalkState, walkModalState } from "../recoil/walk";
 import WalkHistoryComponent from "../components/WalkPage/Calendar/WalkHistoryComponent";
 
+import { useNavigate } from "react-router-dom";
+
 const WalkPage = () => {
   const [walkMenu, setWalkMenu] = useState("walk");
   const [isOpen, setIsOpen] = useRecoilState(walkModalState);
   const [nowWalk, setNowWalk] = useRecoilState(nowWalkState);
+
+  const navigate = useNavigate();
 
   const walkMenuHandler = (menu) => {
     setWalkMenu(menu);
@@ -53,7 +57,7 @@ const WalkPage = () => {
         </Modal>
       ) : null}
 
-      <Header>산책하기</Header>
+      <Header onClick={()=>{navigate(-1)}}>산책하기</Header>
       <div
         style={{
           display: "flex",
