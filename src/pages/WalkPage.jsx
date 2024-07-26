@@ -22,60 +22,69 @@ const WalkPage = () => {
 
   const navigate = useNavigate();
 
-  const walkMenuHandler = (menu) => {
+  const walkMenuHandler = menu => {
     setWalkMenu(menu);
   };
 
   return (
-    <div
-      className="container"
-      style={{
-        background:
-          walkMenu === "walk"
-            ? `linear-gradient(to bottom, ${color.primaryColor00} 0%, ${color.primaryColor01} 49%, ${color.primaryColor30} 100%)`
-            : `linear-gradient(to bottom, ${color.bg200} 0%, ${color.bg201} 49%, ${color.bg230} 100%)`,
-        position: "relative",
-      }}
-    >
-      {isOpen ? (
-        <Modal
-          leftBtn={{
-            text: "아니요",
-            onClick: () => {
-              setIsOpen(false);
-            },
-          }}
-          rightBtn={{
-            text: "끝내기",
-            onClick: () => {
-              setIsOpen(false);
-              setNowWalk({ first: false, now: false, finish: true });
-            },
-          }}
-        >
-          산책을 끝내시겠어요?
-        </Modal>
-      ) : null}
-
-      <Header onClick={()=>{navigate(-1)}}>산책하기</Header>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          padding: "12px 16px",
-          backgroundColor: "white",
-          borderRadius: 10,
+    <>
+      <Header
+        onClick={() => {
+          navigate(-1);
         }}
       >
-        <SelectWalkMenu walkMenu={walkMenu} walkMenuHandler={walkMenuHandler} />
-        {walkMenu === "walk" && <Walk />}
-      </div>
-      {walkMenu == "calendar" &&  <CalendarComponent />}
+        산책하기
+      </Header>
+      
+      <div
+        className="container"
+        style={{
+          background:
+            walkMenu === "walk"
+              ? `linear-gradient(to bottom, ${color.primaryColor00} 0%, ${color.primaryColor01} 49%, ${color.primaryColor30} 100%)`
+              : `linear-gradient(to bottom, ${color.bg200} 0%, ${color.bg201} 49%, ${color.bg230} 100%)`,
+          position: "relative",
+        }}
+      >
+        {isOpen ? (
+          <Modal
+            leftBtn={{
+              text: "아니요",
+              onClick: () => {
+                setIsOpen(false);
+              },
+            }}
+            rightBtn={{
+              text: "끝내기",
+              onClick: () => {
+                setIsOpen(false);
+                setNowWalk({ first: false, now: false, finish: true });
+              },
+            }}
+          >
+            산책을 끝내시겠어요?
+          </Modal>
+        ) : null}
 
-      {walkMenu === "walk" && !nowWalk.finish && <StartStop />}
-      {walkMenu === 'calendar' && <WalkHistoryComponent />}
-    </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            padding: "12px 16px",
+            backgroundColor: "white",
+            borderRadius: 10,
+          }}
+        >
+          <SelectWalkMenu walkMenu={walkMenu} walkMenuHandler={walkMenuHandler} />
+          {walkMenu === "walk" && <Walk />}
+        </div>
+        {walkMenu == "calendar" && <CalendarComponent />}
+
+        {walkMenu === "walk" && !nowWalk.finish && <StartStop />}
+        {walkMenu === "calendar" && <WalkHistoryComponent />}
+      </div>
+    </>
   );
 };
 

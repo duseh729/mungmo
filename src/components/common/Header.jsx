@@ -1,4 +1,4 @@
-const Header = ({ children, onClick, hamburger }) => {
+const Header = ({ children, onClick, hamburgerClick }) => {
   return (
     <div
       style={{
@@ -6,6 +6,7 @@ const Header = ({ children, onClick, hamburger }) => {
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
+        padding: 10
       }}
     >
       <button onClick={onClick} style={{position:"absolute", left: 12, top:6, cursor:"pointer"}}>
@@ -14,8 +15,8 @@ const Header = ({ children, onClick, hamburger }) => {
 
       <span style={{margin: "auto"}}>{children}</span>
 
-      {hamburger && (
-      <button onClick={hamburger.onClick} style={{position:"absolute", right: 12, top:6, cursor:"pointer"}}>
+      {hamburgerClick && (
+      <button onClick={hamburgerClick} style={{position:"absolute", right: 12, top:6, cursor:"pointer"}}>
           <img src="/img/icons/hamburger.png" alt="" />
         </button>
       )}
