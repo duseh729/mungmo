@@ -1,6 +1,6 @@
 import { color as colorConstant } from "../../constant/style";
 
-const Button = ({ children, color, onClick }) => {
+const Button = ({ children, color='black', onClick }) => {
   return (
     <button
       onClick={onClick}
