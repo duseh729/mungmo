@@ -12,6 +12,7 @@ const Button = ({ children, color, onClick }) => {
         padding: "14px",
         fontWeight: 700,
         border: color === "white" ? `1px solid ${colorConstant.gray200}` : null,
+        cursor: 'pointer'
       }}
     >
       {children}

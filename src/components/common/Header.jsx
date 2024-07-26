@@ -12,7 +12,7 @@ const Header = ({ children, onClick, hamburgerClick }) => {
           position: "fixed",
           width: 375,
           top: 0,
-          zIndex:9999
+          zIndex:9
         }}
       >
         <button onClick={onClick} style={{ position: "absolute", left: 12, top: 6, cursor: "pointer" }}>

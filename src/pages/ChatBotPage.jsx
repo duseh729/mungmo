@@ -4,8 +4,12 @@ import { useNavigate } from "react-router-dom";
 import Header from "../components/common/Header";
 import Answer from "../components/ChatBotPage/Answer";
 import Question from "../components/ChatBotPage/Question";
+import ChatBotModal from "../components/ChatBotPage/ChatBotModal";
 
 import { color } from "../constant/style";
+
+import { useRecoilState } from "recoil";
+import { chatModalState } from "../recoil/chat";
 
 const ChatBot = () => {
   const navigate = useNavigate();
@@ -15,6 +19,8 @@ const ChatBot = () => {
   const [question, setQuestion] = useState([]);
 
   const messageEndRef = useRef(null);
+
+  const [chatModal, setChatModal] = useRecoilState(chatModalState);
 
   useEffect(() => {
     if (messageEndRef.current) {
@@ -33,11 +39,12 @@ const ChatBot = () => {
 
   return (
     <div style={{ position: "relative", minHeight: "100vh" }}>
+      {chatModal && <ChatBotModal></ChatBotModal>}
       <Header
         onClick={() => {
           navigate(-1);
         }}
-        hamburgerClick={() => {}}
+        hamburgerClick={() => {setChatModal(true)}}
       >
         AI 댕댕닥터와의 대화
       </Header>

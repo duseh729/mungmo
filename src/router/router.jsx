@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainPage from "../pages/MainPage";
 import ChatBot from "../pages/ChatBotPage";
 import WalkPage from "../pages/WalkPage";
+import ChatBotModal from "../components/ChatBotPage/ChatBotModal";
 
 const AppRouter = () => (
   <Router>
