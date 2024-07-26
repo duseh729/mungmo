@@ -5,7 +5,7 @@ const Button = ({ children, color, onClick }) => {
     <button
       onClick={onClick}
       style={{
-        backgroundColor: color !== "white" ? "black" : "white",
+        backgroundColor: color !== "white" ? color : "white",
         color: color !== "white" ? "white" : "black",
         borderRadius: "10px",
         width: "100%",

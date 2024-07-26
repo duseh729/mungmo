@@ -1,28 +1,50 @@
 import { useNavigate } from "react-router-dom";
 
 import Header from "../components/common/Header";
+import ToLoginComponent from "../components/common/ToLoginComponent";
+import Modal from "../components/common/Modal";
 
 import { color } from "../constant/style";
 
 import { useRecoilState } from "recoil";
 import { isLoginState } from "../recoil/user";
-import ToLoginComponent from "../components/common/ToLoginComponent";
+import { logoutModalState, quitModalState } from "../recoil/myPage";
 
 const MyPage = () => {
   const navigate = useNavigate();
 
   const [isLogin, setIsLogin] = useRecoilState(isLoginState);
+  const [logoutModal, setLogoutModal] = useRecoilState(logoutModalState);
+  const [quitModal, setQuitModal] = useRecoilState(quitModalState);
 
   const menu = [
-    { title: "profile", contents: "프로필 수정", arrow: false },
-    { title: "mail", contents: "문의 메일", arrow: false },
-    { title: "logout", contents: "로그아웃", arrow: true },
-    { title: "version", contents: "버전 0.0.1", arrow: false },
-    { title: "quit", contents: "탈퇴하기", arrow: true },
+    { title: "profile", contents: "프로필 수정", arrow: false, onClick: () => {} },
+    { title: "mail", contents: "문의 메일", arrow: false, onClick: () => {} },
+    { title: "logout", contents: "로그아웃", arrow: true, onClick: () => {setLogoutModal(true)} },
+    { title: "version", contents: "버전 0.0.1", arrow: false, onClick: () => {} },
+    { title: "quit", contents: "탈퇴하기", arrow: true, onClick: () => {setQuitModal(true)} },
   ];
 
   return (
     <div style={{ minHeight: "100vh" }}>
+      {/* 로그아웃 모달 */}
+      {logoutModal && (
+        <Modal leftBtn={{ onClick: () => {setLogoutModal(false)}, text: "취소" }} rightBtn={{ onClick: () => {}, text: "로그아웃" }}>
+          로그아웃 하시겠어요?
+        </Modal>
+      )}
+
+      {/* 회원탈퇴 모달  */}
+      {quitModal && (
+        <Modal leftBtn={{ onClick: () => {setQuitModal(false)}, text: "취소" }} rightBtn={{ onClick: () => {}, text: "로그아웃" }} red={true}>
+          탈퇴 시 모든 데이터가 삭제되어
+          <br />
+          복구가 어려워요.
+          <br />
+          정말 탈퇴하시겠어요?
+        </Modal>
+      )}
+
       <Header
         onClick={() => {
           navigate(-1);
@@ -49,10 +71,10 @@ const MyPage = () => {
   );
 };
 
-const MyPageNavigationItem = ({ onClick, menuData }) => {
+const MyPageNavigationItem = ({ menuData }) => {
   return (
     <div
-      onClick={onClick}
+      onClick={menuData.onClick}
       style={{
         borderRadius: 16,
         padding: 16,
