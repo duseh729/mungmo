@@ -1,4 +1,4 @@
-*{
+* {
   box-sizing: border-box;
 }
 body,
@@ -6,7 +6,7 @@ h1,
 p {
   margin: 0;
 }
-button{
+button {
   border: 0;
   background-color: transparent;
 }
@@ -17,54 +17,62 @@ button{
 
 #web-view {
   width: 375px;
+  min-height: 100vh;
   background-color: white;
   position: relative;
-  left: 20%;
+  left: 40%;
+}
+@media screen and (max-width: 764px) {
+  #web-view {
+    position:static;
+    left: auto;
+    margin: auto;
+  }
 }
 
 /* common-text-style */
-@font-face{
+@font-face {
   font-family: "SUIT-Regular";
   src: url("./fonts/SUIT-Regular.otf") format("truetype");
 }
-body{
+body {
   font-family: "SUIT-Regular";
 }
-.bold-text{
+.bold-text {
   font-weight: bold;
 }
-.semi-bold-text{
+.semi-bold-text {
   font-weight: 600;
 }
-.light-text{
+.light-text {
   font-weight: 300;
 }
 
-.letter-spacing8{
-  letter-spacing:-2px;
+.letter-spacing8 {
+  letter-spacing: -2px;
 }
-.letter-spacing2{
-  letter-spacing:-1px;
+.letter-spacing2 {
+  letter-spacing: -1px;
 }
 
-.text36{
+.text36 {
   font-size: 36px;
 }
-.text28{
+.text28 {
   font-size: 28px;
 }
-.text24{
+.text24 {
   font-size: 24px;
 }
-.text18{
+.text18 {
   font-size: 18px;
 }
-.text16{
+.text16 {
   font-size: 16px;
 }
-.text14{
+.text14 {
   font-size: 14px;
 }
-.text12{
+.text12 {
   font-size: 12px;
 }
