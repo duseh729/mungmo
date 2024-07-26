@@ -25,5 +25,3 @@ dist-ssr
 
 #API KEY
 .env
-
-public/img
