@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import styles from "../../css/MainPage/Header.module.scss";
 
 const MainHeader = () => {
+  const navigate = useNavigate();
+
   return (
     <header className={styles.headerContainer}>
       <div className={styles.logoWrapper}>
@@ -8,8 +11,12 @@ const MainHeader = () => {
       </div>
 
       <div className={styles.iconsWrapper}>
-        <img src="/img/icons/alarm.png" className={styles.icon} alt="" />
-        <img src="/img/icons/profile.png" className={styles.icon} alt="" />
+        <button>
+          <img style={{ display: "block" }} src="/img/icons/alarm.png" className={styles.icon} alt="" />
+        </button>
+        <button onClick={()=>{navigate("myPage")}}>
+          <img style={{ display: "block" }} src="/img/icons/profile.png" className={styles.icon} alt="" />
+        </button>
       </div>
     </header>
   );

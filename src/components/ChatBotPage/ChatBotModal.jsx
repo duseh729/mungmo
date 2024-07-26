@@ -72,25 +72,11 @@ const ChatBotModal = () => {
           </div>
         </div>
       ) : (
-        <div
-          style={{
-            height: "100vh",
-            width: "375px",
-            backgroundColor: "white",
-            padding: "12px 16px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            position: "fixed",
-            zIndex: 98,
-          }}
-        >
           <ToLoginComponent>
             <span className="bold-text">간편 로그인</span>하고
             <br />
             이전 대화 기록을 이용해 보세요!
           </ToLoginComponent>
-        </div>
       )}
     </>
   );
@@ -101,7 +87,7 @@ const ChatHistoryItem = ({ title, onClick }) => {
     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", backgroundColor: color.gray100, padding: 16, borderRadius: 10 }}>
       <span style={{ color: color.gray800 }} className="text16 bold-text">{title}</span>
       <button onClick={onClick}>
-        <img style={{ display: "block" }} src="/img/icons/right-arrow.png" alt="" />
+        <img style={{ display: "block" }} src="/img/icons/right-arrow-gray.png" alt="" />
       </button>
     </div>
   );

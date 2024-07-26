@@ -1,4 +1,4 @@
-const Header = ({ children, onClick, hamburgerClick }) => {
+const Header = ({ children, onClick, hamburgerClick, zIndexTop }) => {
   return (
     <div>
       <div
@@ -12,14 +12,16 @@ const Header = ({ children, onClick, hamburgerClick }) => {
           position: "fixed",
           width: 375,
           top: 0,
-          zIndex:9
+          zIndex: zIndexTop ? 999 : 9,
         }}
       >
         <button onClick={onClick} style={{ position: "absolute", left: 12, top: 6, cursor: "pointer" }}>
           <img src="/img/icons/left-arrow.png" alt="" />
         </button>
 
-        <span style={{ margin: "auto" }}>{children}</span>
+        <span style={{ margin: "auto" }} className="bold-text">
+          {children}
+        </span>
 
         {hamburgerClick && (
           <button onClick={hamburgerClick} style={{ position: "absolute", right: 12, top: 6, cursor: "pointer" }}>
@@ -28,7 +30,7 @@ const Header = ({ children, onClick, hamburgerClick }) => {
         )}
       </div>
 
-      <div style={{height: 40}}></div>
+      <div style={{ height: 40 }}></div>
     </div>
   );
 };

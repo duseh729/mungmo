@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainPage from "../pages/MainPage";
 import ChatBot from "../pages/ChatBotPage";
 import WalkPage from "../pages/WalkPage";
-import ChatBotModal from "../components/ChatBotPage/ChatBotModal";
+import MyPage from "../pages/MyPage";
 
 const AppRouter = () => (
   <Router>
@@ -12,6 +12,7 @@ const AppRouter = () => (
       {/* <Route path="/" element={<Walk />} /> */}
       <Route path="chat" element={<ChatBot />} />
       <Route path="walk" element={<WalkPage />} />
+      <Route path="myPage" element={<MyPage />}></Route>
     </Routes>
   </Router>
 );
