@@ -1,18 +1,19 @@
+
 const Header = ({ children, onClick, hamburgerClick, zIndexTop }) => {
   return (
     <div>
       <div
         style={{
+          zIndex: zIndexTop ? 999 : 9,
           display: "flex",
           flexDirection: "row",
-          justifyContent: "center",
+          justifyContent: "center", 
           alignItems: "center",
           backgroundColor: "white",
           padding: 10,
           position: "fixed",
           width: 375,
           top: 0,
-          zIndex: zIndexTop ? 999 : 9,
         }}
       >
         <button onClick={onClick} style={{ position: "absolute", left: 12, top: 6, cursor: "pointer" }}>

@@ -3,8 +3,10 @@ import styles from "../../css/MainPage/Profile.module.scss";
 import { color } from "../../constant/style";
 
 import Button from "../common/Button";
+import { useNavigate } from "react-router-dom";
 
 const DefaultProfile = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div style={{ marginTop: "16px" }}>
@@ -33,7 +35,7 @@ const DefaultProfile = () => {
           </p>
         </div>
 
-        <Button>로그인하러 가기</Button>
+        <Button onClick={()=>{navigate('login')}}>로그인하러 가기</Button>
       </div>
     </>
   );

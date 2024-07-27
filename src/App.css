@@ -19,14 +19,18 @@ button {
   width: 375px;
   min-height: 100vh;
   background-color: white;
-  position: relative;
-  left: 40%;
+  margin: auto;
 }
 @media screen and (max-width: 764px) {
   #web-view {
     position:static;
     left: auto;
     margin: auto;
+  }
+}
+@media screen and (max-width: 375px) {
+  #web-view {
+    width: 100%;
   }
 }
 
