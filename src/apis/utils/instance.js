@@ -18,6 +18,6 @@ const authAPI = (url, options) => {
 };
 
 // 인스턴스 생성
-// export const baseInstance = baseAPI(import.meta.env.VITE_API_URL);
-export const baseInstance = baseAPI("http://223.130.157.149/api/v1");
-export const authInstance = authAPI("http://223.130.157.149/api/v1");
+export const baseInstance = baseAPI(import.meta.env.VITE_API_URL);
+// export const baseInstance = baseAPI("http://223.130.157.149/api/v1");
+export const authInstance = authAPI(import.meta.env.VITE_API_URL);

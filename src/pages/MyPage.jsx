@@ -18,7 +18,7 @@ const MyPage = () => {
   const [quitModal, setQuitModal] = useRecoilState(quitModalState);
 
   const menu = [
-    { title: "profile", contents: "프로필 수정", arrow: false, onClick: () => {} },
+    { title: "profile", contents: "프로필 수정", arrow: false, onClick: () => {navigate('/profile-update')} },
     { title: "mail", contents: "문의 메일", arrow: false, onClick: () => {} },
     { title: "logout", contents: "로그아웃", arrow: true, onClick: () => {setLogoutModal(true)} },
     { title: "version", contents: "버전 0.0.1", arrow: false, onClick: () => {} },

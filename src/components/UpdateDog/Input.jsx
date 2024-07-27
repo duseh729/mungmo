@@ -27,7 +27,7 @@ const Input = ({ label, type, setIsDisabled, value, setValue }) => {
   return (
     <div style={{ display: "flex", flexDirection: "column", position: "relative" }}>
       <div>
-        <span>{`${label} `}</span>
+        <span>{`${label}`}</span>
         {maxTrigger ? (
           label === "이름" ? (
             <span style={{ color: "#ff4242" }}>15글자 이내로 입력해 주세요.</span>

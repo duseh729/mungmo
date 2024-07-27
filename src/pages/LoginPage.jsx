@@ -27,7 +27,7 @@ const LoginPage = () => {
 
       <div style={{ textAlign: "center" }}>
         {social.map(item => (
-          <button >
+          <button key={item}>
             <img style={{ display: "block" }} src={`/img/loginButton/${item}.png`} alt="" />
           </button>
         ))}
