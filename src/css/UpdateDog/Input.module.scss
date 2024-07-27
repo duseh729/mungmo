@@ -4,4 +4,10 @@
   padding: 16px;
   margin-top: 4px;
   background-color: #F6F7F9;
+  box-sizing: border-box;
+
+  &:focus{
+    background-color: #EAF4FF;
+    border: 1px solid #0C86F7;
+  }
 }
