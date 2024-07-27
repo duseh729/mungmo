@@ -9,7 +9,7 @@ const UpdateName = () => {
     <>
       <Header closeClick={() => {}}>1/5</Header>
 
-      <div className="container" style={{ display: "flex", flexDirection: "column", justifyContent: "space-between",}}>
+      <div className="container" style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: '93vh' }}>
         <div>
           <UpdateTitle />
           <Input label={"이름"} type={"text"}></Input>
