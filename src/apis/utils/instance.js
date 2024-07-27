@@ -18,6 +18,5 @@ const authAPI = (url, options) => {
 };
 
 // 인스턴스 생성
-// export const baseInstance = baseAPI(process.env.REACT_APP_API_URL);
 export const baseInstance = baseAPI(import.meta.env.VITE_API_URL);
 export const authInstance = authAPI(import.meta.env.VITE_API_URL);
