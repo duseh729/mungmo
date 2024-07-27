@@ -1,12 +1,12 @@
 import { color as colorConstant } from "../../constant/style";
 
-const Button = ({ children, color='black', onClick, isDisabled=false }) => {
+const Button = ({ children, color='black', bgColor=null,  onClick, isDisabled=false }) => {
   return (
     <button
       onClick={onClick}
       style={{
-        backgroundColor: color !== "white" ? color : "white",
-        color: color !== "white" ? "white" : "black",
+        backgroundColor: isDisabled ? colorConstant.gray400 : color !== "white" ? bgColor!=null ? bgColor : color : "white",
+        color: isDisabled ? colorConstant.gray600 : color !== "white" ? "white" : color,
         borderRadius: "10px",
         width: "100%",
         padding: "14px",

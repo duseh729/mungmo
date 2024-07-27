@@ -1,5 +1,7 @@
+import { useNavigate } from "react-router-dom";
 
 const Header = ({ children, onClick, hamburgerClick, closeClick, zIndexTop }) => {
+  const navigate = useNavigate();
   return (
     <div>
       <div
@@ -16,7 +18,7 @@ const Header = ({ children, onClick, hamburgerClick, closeClick, zIndexTop }) =>
           top: 0,
         }}
       >
-        <button onClick={onClick} style={{ position: "absolute", left: 12, top: 6, cursor: "pointer" }}>
+        <button onClick={()=>{navigate(-1)}} style={{ position: "absolute", left: 12, top: 6, cursor: "pointer" }}>
           <img src="/img/icons/left-arrow.png" alt="" />
         </button>
 

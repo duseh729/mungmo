@@ -39,7 +39,7 @@ button {
   font-family: "SUIT-Regular";
   src: url("./fonts/SUIT-Regular.otf") format("truetype");
 }
-body {
+body, textarea {
   font-family: "SUIT-Regular";
 }
 .bold-text {
