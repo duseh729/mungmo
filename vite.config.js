@@ -8,5 +8,8 @@ export default defineConfig({
     modules: {
       localsConvention: 'camelCase', // 또는 'dashes'로 설정 가능
     }
-  }
+  },
+  define: {
+    'process.env': process.env,
+  },
 })

@@ -1,51 +1,65 @@
 import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query"; // 최신 버전 import
+import { useRecoilState } from "recoil";
 
 import Header from "../components/common/Header";
 import Answer from "../components/ChatBotPage/Answer";
 import Question from "../components/ChatBotPage/Question";
 import ChatBotModal from "../components/ChatBotPage/ChatBotModal";
+import LoadingAnswer from "../components/ChatBotPage/LoadingAnswer";
 
 import { color } from "../constant/style";
-
-import { useRecoilState } from "recoil";
 import { chatModalState } from "../recoil/chat";
+import { postChat } from "../apis/api/chat";
 
 const ChatBot = () => {
   const navigate = useNavigate();
 
   const [message, setMessage] = useState("");
-  const [answer, setAnswer] = useState(["무엇을 도와줄까"]);
+  const [answer, setAnswer] = useState(["어떤 문제가 있으신가요?\n궁금하신 점을 물어봐 주세요!\n질문에 이런 점들이 들어가면더 자세한 답변을 드릴 수 있어요:)\n(견종, 나이, 무게, 질환 등)"]);
   const [question, setQuestion] = useState([]);
+  const [loadingMessage, setLoadingMessage] = useState(""); // 로딩 메시지 상태
 
   const messageEndRef = useRef(null);
 
   const [chatModal, setChatModal] = useRecoilState(chatModalState);
 
-  useEffect(() => {
-    if (messageEndRef.current) {
-      messageEndRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [answer]);
+  const { mutate, isPending, isError, error, isSuccess } = useMutation({
+    mutationFn: postChat,
+    onMutate: () => {
+      // 요청 시작 시 로딩 메시지 설정
+      setLoadingMessage("대답을 기다리는 중...");
+    },
+    onSuccess: data => {
+      // console.log(data.data.answer);
+      setAnswer(prevAnswers => [...prevAnswers, data.data.answer]);
+      setLoadingMessage(""); // 성공 시 로딩 메시지 제거
+    },
+    onError: error => {
+      console.error("Error posting message:", error);
+      setLoadingMessage(""); // 에러 발생 시 로딩 메시지 제거
+    },
+  });
 
   const handleSendMessage = () => {
-    // console.log(message);
     if (message.trim() !== "") {
-      setQuestion([...question, message]);
-      setAnswer([...answer, "대답 템플릿"]); // 실제 답변 로직으로 교체하세요
+      setQuestion(prevQuestions => [...prevQuestions, message]);
+      mutate(message);
       setMessage("");
     }
   };
+  
+  useEffect(() => {
+    if (messageEndRef.current) {
+      messageEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [answer, isPending]);
 
   return (
     <div style={{ position: "relative", minHeight: "100vh" }}>
-      {chatModal && <ChatBotModal></ChatBotModal>}
-      <Header
-        onClick={() => {
-          navigate(-1);
-        }}
-        hamburgerClick={() => {setChatModal(true)}}
-      >
+      {chatModal && <ChatBotModal />}
+      <Header onClick={() => navigate(-1)} hamburgerClick={() => setChatModal(true)}>
         AI 댕댕닥터와의 대화
       </Header>
 
@@ -58,14 +72,13 @@ const ChatBot = () => {
       </div>
 
       <div className="container">
-        {answer.map((item, index) => {
-          return (
-            <div key={index}>
-              <Answer>{item}</Answer>
-              {index < question.length ? <Question>{question[index]}</Question> : null}
-            </div>
-          );
-        })}
+        {answer.map((item, index) => (
+          <div key={index}>
+            <Answer>{item}</Answer>
+            {index < question.length ? <Question>{question[index]}</Question> : null}
+          </div>
+        ))}
+        {isPending && <LoadingAnswer />}
       </div>
 
       <div ref={messageEndRef} style={{ height: 84 }}></div>
@@ -86,17 +99,15 @@ const ChatBot = () => {
           type="text"
           style={{ height: 52, width: "100%", border: `1px solid ${color.gray300}`, borderRadius: 25, backgroundColor: color.gray100, padding: "12px 16px" }}
           placeholder="궁금한 점을 물어보세요!"
-          onChange={(e)=>{setMessage(e.target.value)}}
+          onChange={e => setMessage(e.target.value)}
           value={message}
-          onKeyUp={(e)=>{
-            if(e.key=="Enter"){
+          onKeyUp={e => {
+            if (e.key === "Enter") {
               handleSendMessage();
             }
           }}
         />
-        <button
-          onClick={handleSendMessage}
-        >
+        <button onClick={handleSendMessage}>
           <img src="/img/button/send-message.png" alt="" />
         </button>
       </div>

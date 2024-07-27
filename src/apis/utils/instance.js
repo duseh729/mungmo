@@ -1,22 +1,23 @@
-import axios from 'axios'
-// import { getItem } from '@utils/storage'
+import axios from "axios";
 
-import config from '../../../api'
-
+// baseAPI 함수
 const baseAPI = (url, options) => {
-  return axios.create({ baseURL: url, ...options })
-}
+  return axios.create({ baseURL: url, ...options });
+};
 
-// const authAPI = (url, options) => {
-//   const token = getItem('jwt_token')
-//   return axios.create({
-//     baseURL: url,
-//     headers: {
-//       Authorization: `bearer ${token}`,
-//     },
-//     ...options,
-//   })
-// }
+// authAPI 함수
+const authAPI = (url, options) => {
+  const token = localStorage.getItem("jwt_token"); // 또는 다른 방식으로 토큰을 가져옵니다.
+  return axios.create({
+    baseURL: url,
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    ...options,
+  });
+};
 
-export const baseInstance = baseAPI(process.env.REACT_APP_SERVER_URL);
-export const authInstance = authAPI(process.env.REACT_APP_SERVER_URL);
+// 인스턴스 생성
+// export const baseInstance = baseAPI(process.env.REACT_APP_API_URL);
+export const baseInstance = baseAPI("http://223.130.157.149/api/v1");
+export const authInstance = authAPI(process.env.REACT_APP_API_URL);
