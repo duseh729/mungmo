@@ -1,5 +1,5 @@
 
-const Header = ({ children, onClick, hamburgerClick, zIndexTop }) => {
+const Header = ({ children, onClick, hamburgerClick, closeClick, zIndexTop }) => {
   return (
     <div>
       <div
@@ -29,6 +29,11 @@ const Header = ({ children, onClick, hamburgerClick, zIndexTop }) => {
             <img src="/img/icons/hamburger.png" alt="" />
           </button>
         )}
+
+        {closeClick && 
+          <button onClick={closeClick} style={{ position: "absolute", right: 12, top: 6, cursor: "pointer" }}>
+            <img src="/img/icons/close.png" alt="" />
+          </button>}
       </div>
 
       <div style={{ height: 40 }}></div>

@@ -1,6 +1,6 @@
 import { color as colorConstant } from "../../constant/style";
 
-const Button = ({ children, color='black', onClick }) => {
+const Button = ({ children, color='black', onClick, isDisabled=false }) => {
   return (
     <button
       onClick={onClick}
@@ -14,6 +14,7 @@ const Button = ({ children, color='black', onClick }) => {
         border: color === "white" ? `1px solid ${colorConstant.gray200}` : null,
         cursor: 'pointer'
       }}
+      disabled={isDisabled}
     >
       {children}
     </button>
