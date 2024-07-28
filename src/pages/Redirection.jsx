@@ -12,6 +12,7 @@ const Redirection = () => {
   useEffect(() => {
 
     if (code) {
+      console.log(code)
       const authenticateUser = async () => {
         try {
           // 카카오 액세스 토큰을 요청합니다.
