@@ -36,7 +36,7 @@ const LoginPage = () => {
             key={item}
             onClick={() => {
               if (item == "kakao") {
-                const redirect_uri = `http://localhost:5173/redirection`;
+                const redirect_uri = `${import.meta.env.VITE_MY_URL}/redirection`;
                 window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${
                   import.meta.env.VITE_KAKAO_KEY
                 }&redirect_uri=${redirect_uri}&response_type=code`;

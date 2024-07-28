@@ -15,7 +15,7 @@ const Redirection = () => {
       const authenticateUser = async () => {
         try {
           // 카카오 액세스 토큰을 요청합니다.
-          const tokenResponse = await getKakaoAccessToken("http://localhost:5173/redirection", code);
+          const tokenResponse = await getKakaoAccessToken(`${import.meta.env.VITE_MY_URL}/redirection`, code);
           const { access_token } = tokenResponse;
           console.log(access_token)
 
