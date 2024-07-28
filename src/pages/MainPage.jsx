@@ -13,6 +13,7 @@ import { fetchUserData } from "../apis/api/user";
 const Main = () => {
   const [isLogin, setIsLogin] = useRecoilState(isLoginState);
   const [dogInfo, setDogInfo] = useRecoilState(dogInfoState);
+  console.log(import.meta.env.VITE_MY_URL);
 
   useEffect(() => {
     const getUserData = async () => {
