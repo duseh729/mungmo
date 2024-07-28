@@ -14,11 +14,13 @@ import { nowWalkState, walkModalState } from "../recoil/walk";
 import WalkHistoryComponent from "../components/WalkPage/Calendar/WalkHistoryComponent";
 
 import { useNavigate } from "react-router-dom";
+import { dogInfoState } from "../recoil/dog";
 
 const WalkPage = () => {
   const [walkMenu, setWalkMenu] = useState("walk");
   const [isOpen, setIsOpen] = useRecoilState(walkModalState);
   const [nowWalk, setNowWalk] = useRecoilState(nowWalkState);
+  const [dogInfo, setDogInfo] = useRecoilState(dogInfoState);
 
   const navigate = useNavigate();
 
@@ -44,6 +46,7 @@ const WalkPage = () => {
               ? `linear-gradient(to bottom, ${color.primaryColor00} 0%, ${color.primaryColor01} 49%, ${color.primaryColor30} 100%)`
               : `linear-gradient(to bottom, ${color.bg200} 0%, ${color.bg201} 49%, ${color.bg230} 100%)`,
           position: "relative",
+          height: "100vh"
         }}
       >
         {isOpen ? (
@@ -77,7 +80,7 @@ const WalkPage = () => {
           }}
         >
           <SelectWalkMenu walkMenu={walkMenu} walkMenuHandler={walkMenuHandler} />
-          {walkMenu === "walk" && <Walk />}
+          {walkMenu === "walk" && <Walk dogName={dogInfo.dogName} />}
         </div>
         {walkMenu == "calendar" && <CalendarComponent />}
 

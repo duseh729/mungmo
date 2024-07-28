@@ -15,17 +15,25 @@ button {
   padding: 12px 16px;
 }
 
+#main{
+  background: url('/img/main.png')
+}
 #web-view {
   width: 375px;
   min-height: 100vh;
   background-color: white;
-  margin: auto;
+  position: relative;
+  left: 55%;
 }
 @media screen and (max-width: 764px) {
   #web-view {
     position:static;
     left: auto;
     margin: auto;
+  }
+  #main{
+    background: none;
+    background-color: #EAF4FF;
   }
 }
 @media screen and (max-width: 375px) {

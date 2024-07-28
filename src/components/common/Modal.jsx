@@ -13,7 +13,7 @@ const Modal = ({ children, leftBtn, rightBtn, red }) => {
         </p>
 
         <div style={{ width: "100%", display: "flex", gap: 8 }}>
-          <Button onClick={leftBtn.onClick} color={"white"}>
+          <Button onClick={leftBtn.onClick} color={'white'}>
             {leftBtn.text}
           </Button>
           <Button color={red ? "red" : "black"} onClick={rightBtn.onClick}>

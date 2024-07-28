@@ -6,7 +6,7 @@ const Button = ({ children, color='black', bgColor=null,  onClick, isDisabled=fa
       onClick={onClick}
       style={{
         backgroundColor: isDisabled ? colorConstant.gray400 : color !== "white" ? bgColor!=null ? bgColor : color : "white",
-        color: isDisabled ? colorConstant.gray600 : color !== "white" ? "white" : color,
+        color: isDisabled ? colorConstant.gray600 : color === "white" ?  colorConstant.gray800 : "white",
         borderRadius: "10px",
         width: "100%",
         padding: "14px",

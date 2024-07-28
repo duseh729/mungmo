@@ -89,7 +89,7 @@ const Input = ({ label, type, setIsDisabled, value, setValue }) => {
             setMaxTrigger(false);
             setIsDisabled(false);
           }}
-          style={{height: 181, fontSize: 16}}
+          style={{ height: 181, fontSize: 16 }}
         />
       ) : (
         <input
@@ -159,28 +159,53 @@ const Input = ({ label, type, setIsDisabled, value, setValue }) => {
 };
 
 const ModalItem = ({ title, setValue, setModalOpen }) => {
-  const [clicked, setClicked] = useState(true);
+  const [clicked, setClicked] = useState(false);
 
   return (
-    <div
-      style={{
-        width: title == "직접 입력" ? "66%" : "31%",
-        border: `1px solid ${color.gray100}`,
-        borderRadius: 16,
-        padding: 20,
-        display: "flex",
-        gap: 12,
-        flexDirection: "column",
-        cursor: "pointer",
-      }}
-      onClick={() => {
-        setValue(title);
-        setModalOpen(false);
-      }}
-    >
-      <img style={{ width: 28, height: 28 }} src={`/img/dogProfileSmall/${title}.png`} alt="" />
-      <span className="bold-text text16">{title}</span>
-    </div>
+    <>
+      <div
+        style={{
+          width: title === "직접 입력" ? "66%" : "31%",
+          border: `1px solid ${color.gray100}`,
+          borderRadius: 16,
+          padding: 20,
+          display: "flex",
+          gap: 12,
+          flexDirection: "column",
+          cursor: "pointer",
+        }}
+        onClick={() => {
+          if (title === "직접 입력") {
+            setClicked(!clicked);
+          } else {
+            setValue(title);
+            setModalOpen(false);
+          }
+        }}
+      >
+        <img style={{ width: 28, height: 28 }} src={`/img/dogProfileSmall/${title}.png`} alt="" />
+        <span className="bold-text text16">{title}</span>
+      {clicked && title === "직접 입력" && (
+        <div >
+          <input
+            type="text"
+            placeholder="직접 입력"
+            onChange={e => setValue(e.target.value)}
+            style={{
+              marginTop: 10,
+              padding: 8,
+              borderRadius: 8,
+              border: `1px solid ${color.gray100}`,
+              position: 'absolute',
+              width:"80%"
+            }}
+            onClick={e => e.stopPropagation()}
+            className={`${styles.input} semi-bold-text`}
+          />
+        </div>
+      )}
+      </div>
+    </>
   );
 };
 

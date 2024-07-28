@@ -14,7 +14,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools />
       <RecoilRoot>
-        <main style={{ backgroundColor: "tomato" }}>
+        <main id="main">
           <div id="web-view">
             <AppRouter />
           </div>

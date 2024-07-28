@@ -6,13 +6,17 @@ export const walkTimeState = atom({
   default: 0,
 });
 
-export const totalSecondState = selector({
+// export const totalSecondState = selector({
+//   key: "totalSecondState",
+//   get: ({ get }) => {
+//     const dogInfo = get(dogInfoState);
+//     const totalSecond = dogInfo["산책 목표"] * 60;
+//     return totalSecond;
+//   },
+// });
+export const totalSecondState = atom({
   key: "totalSecondState",
-  get: ({ get }) => {
-    const dogInfo = get(dogInfoState);
-    const totalSecond = dogInfo["산책 목표"] * 60;
-    return totalSecond;
-  },
+  default: 2400
 });
 
 export const nowWalkState = atom({

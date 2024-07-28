@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { dogNameState } from "../../../recoil/dog";
+
 import {
   nowWalkState,
   totalSecondState,
@@ -13,34 +13,34 @@ import WalkTime from "./WalkTime";
 import Progress from "./Progress";
 import WalkState from "./WalkState";
 import Button from "../../common/Button";
+import { dogInfoState } from "../../../recoil/dog";
 
-const Walk = () => {
-  const [dogName, setDogName] = useRecoilState(dogNameState);
+const Walk = ({ dogName }) => {
   const [walkTime, setWalkTime] = useRecoilState(walkTimeState);
   const [nowWalk, setNowWalk] = useRecoilState(nowWalkState);
-  const totalSeconds = useRecoilValue(totalSecondState);
-  // const totalSeconds = 10;
+  const [totalSeconds, setTotalSeconds] = useRecoilState(totalSecondState);
+  const [dogInfo, setDogInfo] = useRecoilState(dogInfoState);
 
-  const [walkState, setWalkState] = useState();
+  const [walkState, setWalkState] = useState("");
+
   useEffect(() => {
-    setWalkState(
-      nowWalk.finish ? "산책후" : nowWalk.first ? "산책중" : "산책전"
-    );
-  }, [nowWalk]);
+    const newState = nowWalk.finish ? "산책후" : nowWalk.now ? "산책중" : "산책전";
+    if (newState !== walkState) {
+      setWalkState(newState);
+    }
+  }, [nowWalk, walkState]);
 
   useEffect(() => {
     let interval;
     if (nowWalk.now) {
       interval = setInterval(() => {
-        setWalkTime((prevSeconds) => {
-          return prevSeconds + 1;
-        });
+        setWalkTime((prevSeconds) => prevSeconds + 1);
       }, 1000);
-    } else if (!nowWalk && walkTime !== 0) {
+    } else {
       clearInterval(interval);
     }
     return () => clearInterval(interval);
-  }, [nowWalk.now, totalSeconds, setWalkTime]);
+  }, [nowWalk.now, setWalkTime]);
 
   return (
     <div>
@@ -48,13 +48,12 @@ const Walk = () => {
         style={{ textAlign: "center", position: "absolute", left: "28%" }}
         className="bold-text text24 letter-spacing8"
       >
-        <span style={{ color: color.primaryColor }}>{dogName}</span> 와 함께
+        <span style={{ color: color.primaryColor }}>{dogInfo.name==undefined ? '임시' : dogInfo.name}</span> 와 함께
         <br />
         {walkState}
       </h1>
 
       <div>
-        {/* 산책 시간이 목표시간보다 클 때 혹은 산책 끝났을때 */}
         {nowWalk.finish || walkTime >= totalSeconds ? (
           <img
             style={{ width: "100%" }}
@@ -87,7 +86,6 @@ const Walk = () => {
           <Button
             onClick={() => {
               setNowWalk({ first: false, now: false, finish: false });
-              // 산책후 시간 로직 처리 필요함
             }}
           >
             확인 완료

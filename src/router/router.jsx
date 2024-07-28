@@ -12,6 +12,7 @@ import UpdateWeight from "../pages/UpdateDog/UpdateWeight";
 import UpdateBirth from "../pages/UpdateDog/UpdateBrith";
 import UpdateEtc from "../pages/UpdateDog/UpdateEtc";
 import ProfileUpdate from "../pages/ProfileUpdate";
+import Redirection from "../pages/Redirection";
 
 const AppRouter = () => (
   <Router>
@@ -28,6 +29,8 @@ const AppRouter = () => (
       <Route path="weight" element={<UpdateWeight />} />
       <Route path="birth" element={<UpdateBirth />} />
       <Route path="etc" element={<UpdateEtc />} />
+
+      <Route path="redirection" element={<Redirection />} />
 
       <Route path="profile-update" element={<ProfileUpdate />} />
     </Routes>

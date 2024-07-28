@@ -2,8 +2,8 @@ import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-
   const social = ["kakao", "naver"];
+
   return (
     <div
       style={{
@@ -19,16 +19,31 @@ const LoginPage = () => {
         position: "relative",
       }}
     >
-      <button onClick={()=>{navigate('/')}} style={{position:'absolute', top:12, right:16, padding: 0, cursor: 'pointer'}}>
-        <img style={{display: 'block'}} src="/img/icons/close.png" alt="" />
+      <button
+        onClick={() => {
+          navigate("/");
+        }}
+        style={{ position: "absolute", top: 12, right: 16, padding: 0, cursor: "pointer" }}
+      >
+        <img style={{ display: "block" }} src="/img/icons/close.png" alt="" />
       </button>
 
       <img src="/img/logos/logo-large.png" alt="" />
 
       <div style={{ textAlign: "center" }}>
         {social.map(item => (
-          <button key={item}>
-            <img style={{ display: "block" }} src={`/img/loginButton/${item}.png`} alt="" />
+          <button
+            key={item}
+            onClick={() => {
+              if (item == "kakao") {
+                const redirect_uri = `http://localhost:5173/redirection`;
+                window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${
+                  import.meta.env.VITE_KAKAO_KEY
+                }&redirect_uri=${redirect_uri}&response_type=code`;
+              }
+            }}
+          >
+            <img style={{ display: "block" }} src={`/img/loginButton/${item}.png`} alt={item} />
           </button>
         ))}
       </div>

@@ -9,7 +9,7 @@ import { color } from "../../../constant/style";
 const Progress = ()=>{
   const [walkTime, setWalkTime] = useRecoilState(walkTimeState);
   const [dogInfo, setDogInfo] = useRecoilState(dogInfoState);
-  const totalSeconds = useRecoilValue(totalSecondState);
+  const [totalSeconds, setTotalSeconds] = useRecoilState(totalSecondState)
   // const totalSeconds = 10; // 분을 초로 변환
 
   const progress = (walkTime / totalSeconds) * 100;

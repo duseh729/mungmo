@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { dogInputState } from "../../recoil/dog";
 import { useRecoilState } from "recoil";
 import { color } from "../../constant/style";
+import { signup } from "../../apis/api/socialLogin";
 
 const UpdateEtc = () => {
   const navigate = useNavigate();
@@ -27,12 +28,27 @@ const UpdateEtc = () => {
           <Input label={"질환 / 수술"} type={"text"} setIsDisabled={setIsDisabled} value={value} setValue={setValue}></Input>
         </div>
 
-        <div style={{display: 'flex', flexDirection: 'column', gap:4}}>
-          <Button color={color.gray700} bgColor={color.gray100}>스킵하기</Button>
+        <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
           <Button
-            onClick={() => {
-              navigate("/etc");
+            color={"white"}
+            bgColor={color.gray100}
+            onClick={async () => {
               setDogInput({ ...dogInput, etc: value });
+              const token = localStorage.getItem("temp-token");
+              console.log(token);
+              const result = await signup(token, 1, dogInput);
+              console.log(result);
+            }}
+          >
+            스킵하기
+          </Button>
+          <Button
+            onClick={async () => {
+              setDogInput({ ...dogInput, etc: value });
+              const token = localStorage.getItem("temp-token");
+              console.log(token);
+              const result = await signup(token, 1, dogInput);
+              console.log(result);
             }}
           >
             완료

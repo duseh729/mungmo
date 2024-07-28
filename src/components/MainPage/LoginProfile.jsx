@@ -4,6 +4,11 @@ import { color } from "../../constant/style";
 
 const LoginProfile = ({ userName, dogType, profileContents }) => {
   const dogs = ["골든 리트리버", "기본", "말티즈", "밥그릇", "비숑프리제", "시바 이누", "시츄", "웰시코기", "치와와", "포메라니안", "푸들", "프렌치 불독"];
+  const contents = [
+    ["나이", "birth"],
+    ["몸무게", "weight"],
+    ["산책 목표", "walkGoal"],
+  ];
 
   return (
     <>
@@ -23,7 +28,7 @@ const LoginProfile = ({ userName, dogType, profileContents }) => {
         {dogs.find(dog => dog === dogType) ? <img src={`/img/dogProfile/${dogType}.png`} alt="" /> : <img src="/img/dogProfile/기본.png" alt="" />}
 
         <div style={{ textAlign: "center" }}>
-          <span style={{ color: color.primaryColor, backgroundColor:"white" }} className={`semi-bold-text text14 letter-spacing2 ${styles.profileState}`}>
+          <span style={{ color: color.primaryColor, backgroundColor: "white" }} className={`semi-bold-text text14 letter-spacing2 ${styles.profileState}`}>
             {dogType}
           </span>
 
@@ -31,9 +36,7 @@ const LoginProfile = ({ userName, dogType, profileContents }) => {
             {userName}
           </h1>
 
-          <p style={{ color: "white"
-
-           }} className="text14 letter-spacing2">
+          <p style={{ color: "white" }} className="text14 letter-spacing2">
             {profileContents.info}
           </p>
         </div>
@@ -44,14 +47,12 @@ const LoginProfile = ({ userName, dogType, profileContents }) => {
           }}
           className={styles.profileContentsWrapper}
         >
-          {Object.keys(profileContents)
-            .filter(key => key !== "info")
-            .map(key => (
-              <div key={key}>
-                <p style={{opacity: 0.5, fontSize: 14}}>{key}</p>
-                <p className="text18 bold-text">{profileContents[key]}</p>
-              </div>
-            ))}
+          {contents.map(key => (
+            <div key={key}>
+              <p style={{ opacity: 0.5, fontSize: 14 }}>{key[0]}</p>
+              <p className="text18 bold-text">{profileContents[key[1]] == null ? "-" : profileContents[key[1]]}</p>
+            </div>
+          ))}
         </div>
       </div>
     </>
