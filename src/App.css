@@ -50,6 +50,8 @@ button {
   src: url("./fonts/SUIT-Regular.otf") format("truetype");
   font-family: "SUIT-Light";
   src: url("./fonts/SUIT-Light.otf") format("truetype");
+  font-family: "SUIT-Bold";
+  src: url("./fonts/SUIT-Bold.otf") format("truetype");
 }
 body,
 textarea {

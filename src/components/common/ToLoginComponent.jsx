@@ -19,7 +19,7 @@ const ToLoginComponent = ({ children }) => {
         zIndex: 98,
       }}
     >
-      <div style={{ display: "flex", alignItems: "center", flexDirection: "column", textAlign: "center", gap: 52 }}>
+      <div style={{ display: "flex", alignItems: "center", flexDirection: "column", textAlign: "center", gap: 52, width: '100%' }}>
         <p className="text24">{children}</p>
         <Button onClick={()=>{navigate('/login')}}>로그인하러 가기</Button>
       </div>
