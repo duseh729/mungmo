@@ -16,7 +16,7 @@ const LoginProfile = ({ userName, dogType, profileContents }) => {
         <h1 style={{ color: color.primaryColor }} className="bold-text text24 letter-spacing8">
           {userName}
         </h1>
-        <h1 className="text24 letter-spacing8">보호자님, 오늘은 어떤 하루인가요?</h1>
+        <h1 className="text24 letter-spacing8" style={{fontFamily: "SUIT-Light"}}>보호자님, 오늘은 어떤 하루인가요?</h1>
       </div>
 
       <div

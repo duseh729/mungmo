@@ -40,6 +40,8 @@ const LoginPage = () => {
                 window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${
                   import.meta.env.VITE_KAKAO_KEY
                 }&redirect_uri=${redirect_uri}&response_type=code`;
+              }else if (item =='naver'){
+                window.location.href = "https://naver.com"
               }
             }}
           >

@@ -12,10 +12,10 @@ const MainHeader = () => {
 
       <div className={styles.iconsWrapper}>
         <button>
-          <img style={{ display: "block" }} src="/img/icons/alarm.png" className={styles.icon} alt="" />
+          <img style={{ display: "block" }} src="/img/icons/alarm.svg" className={styles.icon} alt="" />
         </button>
         <button onClick={()=>{navigate("myPage")}}>
-          <img style={{ display: "block" }} src="/img/icons/profile.png" className={styles.icon} alt="" />
+          <img style={{ display: "block" }} src="/img/icons/profile.svg" className={styles.icon} alt="" />
         </button>
       </div>
     </header>

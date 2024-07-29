@@ -12,14 +12,15 @@ const Header = ({ children, onClick, hamburgerClick, closeClick, zIndexTop }) =>
           justifyContent: "center", 
           alignItems: "center",
           backgroundColor: "white",
-          padding: 10,
+          padding: "14px 10px",
           position: "fixed",
           width: 375,
+          height: 48,
           top: 0,
         }}
       >
-        <button onClick={()=>{navigate(-1)}} style={{ position: "absolute", left: 12, top: 6, cursor: "pointer" }}>
-          <img src="/img/icons/left-arrow.png" alt="" />
+        <button onClick={()=>{navigate(-1)}} style={{ position: "absolute", left: 12, top: 12, cursor: "pointer" }}>
+          <img  style={{display: 'block'}} src="/img/icons/left-arrow.png" alt="" />
         </button>
 
         <span style={{ margin: "auto" }} className="bold-text">
@@ -27,13 +28,13 @@ const Header = ({ children, onClick, hamburgerClick, closeClick, zIndexTop }) =>
         </span>
 
         {hamburgerClick && (
-          <button onClick={hamburgerClick} style={{ position: "absolute", right: 12, top: 6, cursor: "pointer" }}>
-            <img src="/img/icons/hamburger.png" alt="" />
+          <button onClick={hamburgerClick} style={{ position: "absolute", right: 12, top: 12, cursor: "pointer" }}>
+            <img style={{display: 'block'}} src="/img/icons/hamburger.png" alt="" />
           </button>
         )}
 
         {closeClick && 
-          <button onClick={closeClick} style={{ position: "absolute", right: 12, top: 6, cursor: "pointer" }}>
+          <button onClick={closeClick} style={{ position: "absolute", right: 12, top: 12, cursor: "pointer" }}>
             <img src="/img/icons/close.png" alt="" />
           </button>}
       </div>

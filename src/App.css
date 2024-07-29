@@ -48,6 +48,8 @@ button {
 @font-face {
   font-family: "SUIT-Regular";
   src: url("./fonts/SUIT-Regular.otf") format("truetype");
+  font-family: "SUIT-Light";
+  src: url("./fonts/SUIT-Light.otf") format("truetype");
 }
 body,
 textarea {
@@ -64,7 +66,7 @@ textarea {
 }
 
 .letter-spacing8 {
-  letter-spacing: -2px;
+  letter-spacing: -4px;
 }
 .letter-spacing2 {
   letter-spacing: -1px;
