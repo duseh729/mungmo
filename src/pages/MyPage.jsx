@@ -10,6 +10,7 @@ import { useRecoilState } from "recoil";
 import { isLoginState } from "../recoil/user";
 import { logoutModalState, quitModalState } from "../recoil/myPage";
 import { clearTokens } from "../apis/tokenManager";
+import { resign } from "../apis/api/socialLogin";
 
 const MyPage = () => {
   const navigate = useNavigate();
@@ -62,7 +63,7 @@ const MyPage = () => {
             onClick: () => {
               clearTokens();
               setIsLogin(false);
-              navigate('/');
+              navigate("/");
             },
             text: "로그아웃",
           }}
@@ -80,7 +81,13 @@ const MyPage = () => {
             },
             text: "취소",
           }}
-          rightBtn={{ onClick: () => {}, text: "탈퇴하기" }}
+          rightBtn={{
+            onClick: async () => {
+              const res = await resign();
+              navigate("/");
+            },
+            text: "탈퇴하기",
+          }}
           red={true}
         >
           탈퇴 시 모든 데이터가 삭제되어

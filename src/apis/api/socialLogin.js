@@ -1,6 +1,6 @@
 import axios from "axios";
-import { baseInstance } from "../utils/instance";
-import { setTokens } from "../tokenManager";
+import { authInstance, baseInstance } from "../utils/instance";
+import { clearTokens, setTokens } from "../tokenManager";
 
 export const getKakaoAccessToken = async (redirectUri, code) => {
   // console.log(redirectUri)
@@ -46,3 +46,13 @@ export const signup = async (token, type, petData) => {
     throw error;
   }
 };
+
+export const resign = async ()=>{
+  try {
+    const res = await authInstance.delete('/user');
+    clearTokens();
+  } catch (error) {
+    console.error("resign error: ", error);
+    throw error;
+  }
+}
