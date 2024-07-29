@@ -1,4 +1,5 @@
 import axios from "axios";
+import { interceptors } from "./interceptors";
 
 // baseAPI 함수: 기본 Axios 인스턴스 생성
 const baseAPI = (url, options = {}) => {
@@ -7,12 +8,14 @@ const baseAPI = (url, options = {}) => {
 
 // authAPI 함수: 인증이 필요한 Axios 인스턴스 생성
 const authAPI = (url, options = {}) => {
-  const token = localStorage.getItem("accessToken"); // 로컬 스토리지에서 accessToken을 가져옵니다.
+  const instance = axios.create({ baseURL: url, ...options });
   // console.log(token)
+  interceptors(instance);
+  return instance;
   return axios.create({
     baseURL: url,
     headers: {
-      Authorization: token ? `Bearer ${token}` : '',
+      Authorization: token ? `Bearer ${token}` : "",
     },
     ...options,
   });

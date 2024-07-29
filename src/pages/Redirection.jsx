@@ -22,7 +22,7 @@ const Redirection = () => {
 
           // 액세스 토큰을 사용하여 로그인 처리
           const loginResponse = await login(1, access_token);
-          console.log(loginResponse)
+          
           if (loginResponse.httpStatusCode==201) {
             // 로그인 성공 시 홈 페이지로 이동
             navigate("/");

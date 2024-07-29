@@ -13,13 +13,12 @@ import { fetchUserData } from "../apis/api/user";
 const Main = () => {
   const [isLogin, setIsLogin] = useRecoilState(isLoginState);
   const [dogInfo, setDogInfo] = useRecoilState(dogInfoState);
-  console.log(import.meta.env.VITE_MY_URL);
 
   useEffect(() => {
     const getUserData = async () => {
       try {
         const userData = await fetchUserData();
-        console.log(userData)
+        // console.log(userData)
         if (userData.httpStatusCode === 200) {
           setDogInfo({ info: "용맹하고 씩씩한 동네 인싸", ...userData.data.pet });
           setIsLogin(true);
@@ -30,7 +29,9 @@ const Main = () => {
       }
     };
 
-    getUserData();
+    if(localStorage.getItem('accessToken')){
+      getUserData();
+    }
   }, [setDogInfo, setIsLogin]);
 
   return (

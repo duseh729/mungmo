@@ -9,6 +9,7 @@ import { color } from "../constant/style";
 import { useRecoilState } from "recoil";
 import { isLoginState } from "../recoil/user";
 import { logoutModalState, quitModalState } from "../recoil/myPage";
+import { clearTokens } from "../apis/tokenManager";
 
 const MyPage = () => {
   const navigate = useNavigate();
@@ -18,25 +19,70 @@ const MyPage = () => {
   const [quitModal, setQuitModal] = useRecoilState(quitModalState);
 
   const menu = [
-    { title: "profile", contents: "프로필 수정", arrow: false, onClick: () => {navigate('/profile-update')} },
+    {
+      title: "profile",
+      contents: "프로필 수정",
+      arrow: false,
+      onClick: () => {
+        navigate("/profile-update");
+      },
+    },
     { title: "mail", contents: "문의 메일", arrow: false, onClick: () => {} },
-    { title: "logout", contents: "로그아웃", arrow: true, onClick: () => {setLogoutModal(true)} },
+    {
+      title: "logout",
+      contents: "로그아웃",
+      arrow: true,
+      onClick: () => {
+        setLogoutModal(true);
+      },
+    },
     { title: "version", contents: "버전 0.0.1", arrow: false, onClick: () => {} },
-    { title: "quit", contents: "탈퇴하기", arrow: true, onClick: () => {setQuitModal(true)} },
+    {
+      title: "quit",
+      contents: "탈퇴하기",
+      arrow: true,
+      onClick: () => {
+        setQuitModal(true);
+      },
+    },
   ];
 
   return (
     <div style={{ minHeight: "100vh" }}>
       {/* 로그아웃 모달 */}
       {logoutModal && (
-        <Modal leftBtn={{ onClick: () => {setLogoutModal(false)}, text: "취소" }} rightBtn={{ onClick: () => {}, text: "로그아웃" }}>
+        <Modal
+          leftBtn={{
+            onClick: () => {
+              setLogoutModal(false);
+            },
+            text: "취소",
+          }}
+          rightBtn={{
+            onClick: () => {
+              clearTokens();
+              setIsLogin(false);
+              navigate('/');
+            },
+            text: "로그아웃",
+          }}
+        >
           로그아웃 하시겠어요?
         </Modal>
       )}
 
       {/* 회원탈퇴 모달  */}
       {quitModal && (
-        <Modal leftBtn={{ onClick: () => {setQuitModal(false)}, text: "취소" }} rightBtn={{ onClick: () => {}, text: "로그아웃" }} red={true}>
+        <Modal
+          leftBtn={{
+            onClick: () => {
+              setQuitModal(false);
+            },
+            text: "취소",
+          }}
+          rightBtn={{ onClick: () => {}, text: "탈퇴하기" }}
+          red={true}
+        >
           탈퇴 시 모든 데이터가 삭제되어
           <br />
           복구가 어려워요.

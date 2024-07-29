@@ -4,7 +4,6 @@ import { authInstance } from "../utils/instance";
 export const fetchUserData = async () => {
   const token = localStorage.getItem('accessToken');
 
-  console.log(token);
   if (!token) {
     console.error('No access token found');
     throw new Error('No access token found');
