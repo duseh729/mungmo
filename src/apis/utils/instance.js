@@ -21,7 +21,6 @@ const authAPI = (url, options = {}) => {
   });
 };
 
-// const API_URL = "http://223.130.157.149/api/v1";
 const API_URL = import.meta.env.VITE_API_URL;
 
 // 인스턴스 생성

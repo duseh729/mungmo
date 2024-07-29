@@ -57,7 +57,7 @@ const ChatBot = () => {
   }, [answer, isPending]);
 
   return (
-    <div style={{ position: "relative", minHeight: "100vh" }}>
+    <div style={{ position: "relative", maxHeight: "100vh", overflow: 'auto' }}>
       {chatModal && <ChatBotModal />}
       <Header onClick={() => navigate(-1)} hamburgerClick={() => setChatModal(true)}>
         AI 댕댕닥터와의 대화
