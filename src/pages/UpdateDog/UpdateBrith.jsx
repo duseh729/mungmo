@@ -11,8 +11,8 @@ import { useRecoilState } from "recoil";
 
 const UpdateBirth = () => {
   const navigate = useNavigate();
-  const [isDisabled, setIsDisabled] = useState(true);
-  const [value, setValue] = useState("");
+  const [isDisabled, setIsDisabled] = useState(false);
+  const [value, setValue] = useState(2024);
 
   const [dogInput, setDogInput] = useRecoilState(dogInputState);
 

@@ -4,7 +4,7 @@ import UpdateTitle from "../../components/UpdateDog/UpdateTitle";
 import Input from "../../components/UpdateDog/Input";
 import Button from "../../components/common/Button";
 
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { dogInputState } from "../../recoil/dog";
@@ -15,6 +15,12 @@ const UpdateName = () => {
   const [isDisabled, setIsDisabled] = useState(true);
 
   const [dogInput, setDogInput] = useRecoilState(dogInputState);
+
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const token = queryParams.get('kat');
+  sessionStorage.setItem("kat", token);
+  // console.log(token)
 
   return (
     <>

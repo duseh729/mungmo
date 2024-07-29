@@ -18,6 +18,8 @@ const UpdateEtc = () => {
 
   const [dogInput, setDogInput] = useRecoilState(dogInputState);
 
+  // console.log(dogInput);
+
   return (
     <>
       <Header closeClick={() => {}}>5/5</Header>
@@ -33,11 +35,16 @@ const UpdateEtc = () => {
             color={"white"}
             bgColor={color.gray100}
             onClick={async () => {
+              // console.log(dogInput);
               setDogInput({ ...dogInput, etc: value });
-              const token = localStorage.getItem("temp-token");
-              console.log(token);
+              const token = sessionStorage.getItem("kat");
+              
               const result = await signup(token, 1, dogInput);
-              console.log(result);
+
+              if(result.httpStatusCode===201){
+                sessionStorage.removeItem("kat");
+                navigate('/');
+              }
             }}
           >
             스킵하기
@@ -45,10 +52,14 @@ const UpdateEtc = () => {
           <Button
             onClick={async () => {
               setDogInput({ ...dogInput, etc: value });
-              const token = localStorage.getItem("temp-token");
-              console.log(token);
+              const token = sessionStorage.getItem("kat");
+              
               const result = await signup(token, 1, dogInput);
-              console.log(result);
+              
+              if(result.httpStatusCode===201){
+                sessionStorage.removeItem("kat");
+                navigate('/');
+              }
             }}
           >
             완료

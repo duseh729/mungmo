@@ -16,6 +16,8 @@ const UpdateBreed = () => {
 
   const [dogInput, setDogInput] = useRecoilState(dogInputState);
 
+  // console.log(dogInput);
+
   return (
     <>
       <Header closeClick={() => {}}>2/5</Header>

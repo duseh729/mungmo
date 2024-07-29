@@ -84,6 +84,7 @@ const MyPage = () => {
           rightBtn={{
             onClick: async () => {
               const res = await resign();
+              setIsLogin(false);
               navigate("/");
             },
             text: "탈퇴하기",

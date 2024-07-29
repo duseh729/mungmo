@@ -1,6 +1,7 @@
 import axios from "axios";
 import { authInstance, baseInstance } from "../utils/instance";
 import { clearTokens, setTokens } from "../tokenManager";
+import { useNavigate } from "react-router-dom";
 
 export const getKakaoAccessToken = async (redirectUri, code) => {
   // console.log(redirectUri)
@@ -31,7 +32,8 @@ export const login = async (type, token) => {
     setTokens(data.data.accessToken, data.data.refreshToken); // 토큰 저장
     return data;
   } catch (error) {
-    console.error('kakao login error: ', error.response ? error.response.data : error);
+    // console.error('kakao login error: ', error.response ? error.response.data : error);
+    // console.error(error.response.data.message); 
     throw error;
   }
 };
@@ -39,10 +41,10 @@ export const login = async (type, token) => {
 export const signup = async (token, type, petData) => {
   try {
     const { data } = await baseInstance.post('/user', { socialLoginType: type, token: token, pet: petData });
-    setTokens(data.data.accessToken, data.data.refreshToken); // 토큰 저장
+    // setTokens(data.data.accessToken, data.data.refreshToken); // 토큰 저장
     return data;
   } catch (error) {
-    console.error('kakao signup error: ', error.response ? error.response.data : error);
+    console.error('kakao signup error: ', error.response ? error.response.data.message : error);
     throw error;
   }
 };
