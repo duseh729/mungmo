@@ -19,6 +19,20 @@
   background-color: #ffecec;
 }
 
+.disabledInput{
+  width: 100%;
+  border-radius: 16px;
+  border: none;
+  padding: 16px;
+  margin-top: 4px;
+  background-color: #B0B6C0;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+  }
+}
+
 // 모달
 .dropdown {
   position: absolute;

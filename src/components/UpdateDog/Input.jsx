@@ -4,7 +4,7 @@ import { color } from "../../constant/style";
 
 const options = ["직접 입력", "말티즈", "프렌치 불독", "푸들", "포메라니안", "치와와", "시츄", "비숑프리제", "리트리버", "웰시코기", "시바 이누"];
 
-const Input = ({ label, type, setIsDisabled, value, setValue }) => {
+const Input = ({ label, type, setIsDisabled=()=>{}, value, setValue }) => {
   const [maxTrigger, setMaxTrigger] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
@@ -26,9 +26,9 @@ const Input = ({ label, type, setIsDisabled, value, setValue }) => {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", position: "relative" }}>
+    <div style={{ display: "flex", flexDirection: "column", position: "relative", marginBottom: type==="text" ? 28 : 12 }}>
       <div>
-        <span>{`${label}`}</span>
+        <span style={{color: color.gray700, padding: '0 12px'}} className="text14">{`${label}`}</span>
         {maxTrigger ? (
           label === "이름" ? (
             <span style={{ color: "#ff4242" }}>15글자 이내로 입력해 주세요.</span>
@@ -130,6 +130,7 @@ const Input = ({ label, type, setIsDisabled, value, setValue }) => {
             setMaxTrigger(false);
             setIsDisabled(false);
           }}
+          step={label == "무게 / kg" ? "0.1" : "1"}
         />
       )}
 

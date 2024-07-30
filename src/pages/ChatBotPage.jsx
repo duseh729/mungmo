@@ -65,7 +65,7 @@ const ChatBot = () => {
         AI 댕댕닥터와의 대화
       </Header>
 
-      <div className="container">
+      <div className="container" style={{minHeight:0}}>
         <div style={{ backgroundColor: color.gray100, padding: 12 }}>
           <p style={{ color: color.gray600, textAlign: "center" }} className="text12">
             AI 댕댕닥터와의 대화는 참고용으로만 사용해주세요.
@@ -83,7 +83,7 @@ const ChatBot = () => {
         {isPending && <LoadingAnswer />}
       </div>
 
-      <div ref={messageEndRef} style={{ height: 84 }}></div>
+      <div ref={messageEndRef} style={{ height: 76 }}></div>
 
       <div
         style={{
