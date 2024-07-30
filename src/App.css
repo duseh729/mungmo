@@ -12,7 +12,8 @@ button {
 }
 
 .container {
-  padding: 12px 16px;
+  padding: 60px 16px 12px 16px;
+  max-height: 100vh;
 }
 
 #main {
@@ -25,12 +26,15 @@ button {
   min-height: 100vh;
   background-color: white;
   position: relative;
-  left: 55%;
+}
+@media screen and (min-width: 765px) {
+  #web-view {
+    left: 55%;
+  }
 }
 @media screen and (max-width: 764px) {
   #web-view {
-    position: static;
-    left: auto;
+    position: relative;
     margin: auto;
   }
   #main {
@@ -44,19 +48,30 @@ button {
   }
 }
 
-/* common-text-style */
+/* common-text-style *//* common-text-style */
 @font-face {
   font-family: "SUIT-Regular";
   src: url("./fonts/SUIT-Regular.otf") format("truetype");
+  font-style: normal;
+}
+
+@font-face {
   font-family: "SUIT-Light";
   src: url("./fonts/SUIT-Light.otf") format("truetype");
+  font-style: normal;
+}
+
+@font-face {
   font-family: "SUIT-Bold";
   src: url("./fonts/SUIT-Bold.otf") format("truetype");
+  font-style: normal;
 }
-body,
-textarea {
+
+
+body{
   font-family: "SUIT-Regular";
 }
+
 .bold-text {
   font-weight: bold;
 }
@@ -68,7 +83,7 @@ textarea {
 }
 
 .letter-spacing8 {
-  letter-spacing: -4px;
+  letter-spacing: -3px;
 }
 .letter-spacing2 {
   letter-spacing: -1px;

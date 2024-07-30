@@ -20,6 +20,11 @@ const UpdateEtc = () => {
 
   // console.log(dogInput);
 
+  useEffect(() => {
+    setDogInput({ ...dogInput, etc: value });
+    // console.log(dogInput);
+  }, [value]);
+
   return (
     <>
       <Header closeClick={() => {}}>5/5</Header>
@@ -35,15 +40,13 @@ const UpdateEtc = () => {
             color={"white"}
             bgColor={color.gray100}
             onClick={async () => {
-              // console.log(dogInput);
-              setDogInput({ ...dogInput, etc: value });
               const token = sessionStorage.getItem("kat");
-              
+
               const result = await signup(token, 1, dogInput);
 
-              if(result.httpStatusCode===201){
+              if (result.httpStatusCode === 201) {
                 sessionStorage.removeItem("kat");
-                navigate('/');
+                navigate("/");
               }
             }}
           >
@@ -51,14 +54,13 @@ const UpdateEtc = () => {
           </Button>
           <Button
             onClick={async () => {
-              setDogInput({ ...dogInput, etc: value });
               const token = sessionStorage.getItem("kat");
-              
+
               const result = await signup(token, 1, dogInput);
-              
-              if(result.httpStatusCode===201){
+
+              if (result.httpStatusCode === 201) {
                 sessionStorage.removeItem("kat");
-                navigate('/');
+                navigate("/");
               }
             }}
           >

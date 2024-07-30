@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 
-import {
-  nowWalkState,
-  totalSecondState,
-  walkTimeState,
-} from "../../../recoil/walk";
+import { nowWalkState, totalSecondState, walkTimeState } from "../../../recoil/walk";
 
 import { color } from "../../../constant/style";
 
@@ -13,7 +9,10 @@ import WalkTime from "./WalkTime";
 import Progress from "./Progress";
 import WalkState from "./WalkState";
 import Button from "../../common/Button";
+
 import { dogInfoState } from "../../../recoil/dog";
+
+import styles from '../../../css/WalkPage/Walk.module.scss'
 
 const Walk = ({ dogName }) => {
   const [walkTime, setWalkTime] = useRecoilState(walkTimeState);
@@ -34,7 +33,7 @@ const Walk = ({ dogName }) => {
     let interval;
     if (nowWalk.now) {
       interval = setInterval(() => {
-        setWalkTime((prevSeconds) => prevSeconds + 1);
+        setWalkTime(prevSeconds => prevSeconds + 1);
       }, 1000);
     } else {
       clearInterval(interval);
@@ -44,42 +43,29 @@ const Walk = ({ dogName }) => {
 
   return (
     <div>
-      <h1
-        style={{ textAlign: "center", position: "absolute", left: "28%" }}
-        className="bold-text text24 letter-spacing8"
-      >
-        <span style={{ color: color.primaryColor }}>{dogInfo.name==undefined ? '임시' : dogInfo.name}</span> 와 함께
+      <h1 style={{ textAlign: "center" }} className="bold-text text24 letter-spacing8">
+        <span style={{ color: color.primaryColor }}>{dogInfo.name == undefined ? "임시" : dogInfo.name}</span> 와 함께
         <br />
         {walkState}
       </h1>
 
-      <div>
+      <div className={styles.gifWrapper}>
         {nowWalk.finish || walkTime >= totalSeconds ? (
-          <img
-            style={{ width: "100%" }}
-            src={`/img/walkGIF/after-walk.gif`}
-            alt=""
-          />
+          <img style={{ width: "100%" }} src={`/img/walkGIF/after-walk.gif`} alt="" />
         ) : walkState === "산책전" ? (
-          <img
-            style={{ width: "100%" }}
-            src={`/img/walkGIF/before-walk.gif`}
-            alt=""
-          />
+          <img style={{ width: "100%" }} src={`/img/walkGIF/before-walk.gif`} alt="" />
         ) : (
-          <img
-            style={{ width: "100%" }}
-            src={`/img/walkGIF/ing-walk.gif`}
-            alt=""
-          />
+          <img style={{ width: "100%" }} src={`/img/walkGIF/ing-walk.gif`} alt="" />
         )}
       </div>
 
-      <WalkTime />
+      <div style={{padding: "12px 0 8px 0", position: 'relative', top: -50}}>
+        <WalkTime />
 
-      <Progress />
+        <Progress />
 
-      <WalkState />
+        <WalkState />
+      </div>
 
       {nowWalk.finish && (
         <div style={{ margin: "14px 0 6px 0" }}>

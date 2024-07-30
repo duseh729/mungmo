@@ -20,6 +20,7 @@ const SelectWalkMenu = ({ walkMenu, walkMenuHandler }) => {
             color: walkMenu === item.type ? color.gray900 : color.gray500,
             backgroundColor: walkMenu === item.type ? "white" : "transparent",
             padding: "6px 14px",
+            fontFamily: "SUIT-Regular"
           }}
           className="semi-bold-text text16"
         >

@@ -10,7 +10,8 @@ const Input = ({ label, type, setIsDisabled, value, setValue }) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
-    if (value.length > 0) {
+    if (value.length > 0 || value>=1990) {
+      // console.log("disabled false")
       setIsDisabled(false);
     } else {
       setIsDisabled(true);

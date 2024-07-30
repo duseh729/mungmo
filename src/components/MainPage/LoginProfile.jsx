@@ -5,9 +5,9 @@ import { color } from "../../constant/style";
 const LoginProfile = ({ userName, dogType, profileContents }) => {
   const dogs = ["골든 리트리버", "기본", "말티즈", "밥그릇", "비숑프리제", "시바 이누", "시츄", "웰시코기", "치와와", "포메라니안", "푸들", "프렌치 불독"];
   const contents = [
-    ["나이", "birth"],
-    ["몸무게", "weight"],
-    ["산책 목표", "walkGoal"],
+    ["나이", `${profileContents["birth"] - new Date().getFullYear() + 1}살`],
+    ["몸무게", `${profileContents["weight"]}kg`],
+    ["산책 목표", profileContents["walkGoal"]],
   ];
 
   return (
@@ -16,7 +16,9 @@ const LoginProfile = ({ userName, dogType, profileContents }) => {
         <h1 style={{ color: color.primaryColor }} className="bold-text text24 letter-spacing8">
           {userName}
         </h1>
-        <h1 className="text24 letter-spacing8" style={{fontFamily: "SUIT-Light"}}>보호자님, 오늘은 어떤 하루인가요?</h1>
+        <h1 className="text24 letter-spacing8" style={{ fontFamily: "SUIT-Light", fontWeight: 300 }}>
+          보호자님, 오늘은 어떤 하루인가요?
+        </h1>
       </div>
 
       <div
@@ -47,10 +49,10 @@ const LoginProfile = ({ userName, dogType, profileContents }) => {
           }}
           className={styles.profileContentsWrapper}
         >
-          {contents.map(key => (
-            <div key={key}>
-              <p style={{ opacity: 0.5, fontSize: 14 }}>{key[0]}</p>
-              <p className="text18 bold-text">{profileContents[key[1]] == null ? "-" : profileContents[key[1]]}</p>
+          {contents.map((data, index) => (
+            <div key={index}>
+              <p style={{ opacity: 0.5, fontSize: 14 }}>{data[0]}</p>
+              <p className="text18 bold-text">{data[1] == null ? "-" : index == 2 ? `${data[1]}분` : data[1]}</p>
             </div>
           ))}
         </div>

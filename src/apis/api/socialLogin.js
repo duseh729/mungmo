@@ -28,7 +28,7 @@ export const getKakaoAccessToken = async (redirectUri, code) => {
 export const login = async (type, token) => {
   try {
     const { data } = await baseInstance.post('/auth/login', { socialLoginType: type, token: token });
-    console.log(data.data.accessToken)
+    // console.log(data.data.accessToken)
     setTokens(data.data.accessToken, data.data.refreshToken); // 토큰 저장
     return data;
   } catch (error) {
@@ -40,7 +40,7 @@ export const login = async (type, token) => {
 
 export const signup = async (token, type, petData) => {
   try {
-    // console.log(petData);
+    console.log(petData);
     const { data } = await baseInstance.post('/user', { socialLoginType: type, token: token, pet: petData });
     // setTokens(data.data.accessToken, data.data.refreshToken); // 토큰 저장
     return data;

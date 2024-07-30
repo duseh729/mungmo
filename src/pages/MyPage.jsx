@@ -49,7 +49,17 @@ const MyPage = () => {
   ];
 
   return (
-    <div style={{ minHeight: "100vh" }}>
+    <>    
+    <Header
+        onClick={() => {
+          navigate(-1);
+        }}
+        zIndexTop={true}
+      >
+        MY
+      </Header>
+      
+    <div className="container">
       {/* 로그아웃 모달 */}
       {logoutModal && (
         <Modal
@@ -99,17 +109,9 @@ const MyPage = () => {
         </Modal>
       )}
 
-      <Header
-        onClick={() => {
-          navigate(-1);
-        }}
-        zIndexTop={true}
-      >
-        MY
-      </Header>
 
       {isLogin ? (
-        <div style={{ display: "flex", flexDirection: "column", gap: 8, padding: 16 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
           {menu.map((data, index) => (
             <MyPageNavigationItem menuData={data} onClick={() => {}} key={index} />
           ))}
@@ -121,7 +123,7 @@ const MyPage = () => {
           <span className="bold-text">Mungmo</span>를 이용해 보세요!
         </ToLoginComponent>
       )}
-    </div>
+    </div></>
   );
 };
 

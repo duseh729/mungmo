@@ -13,7 +13,9 @@ const DefaultProfile = () => {
         <h1 style={{ color: color.primaryColor }} className="bold-text text24 letter-spacing8">
           안녕하세요?
         </h1>
-        <h1 className="text24 letter-spacing8" style={{fontFamily: "SUIT-Light"}}>오늘도 좋은 하루 되세요</h1>
+        <h1 className="text24 letter-spacing8" style={{ fontFamily: "SUIT-Light", fontWeight: 300 }}>
+          오늘도 좋은 하루 되세요
+        </h1>
       </div>
 
       <div
@@ -35,7 +37,13 @@ const DefaultProfile = () => {
           </p>
         </div>
 
-        <Button onClick={()=>{navigate('login')}}>로그인하러 가기</Button>
+        <Button
+          onClick={() => {
+            navigate("login");
+          }}
+        >
+          로그인하러 가기
+        </Button>
       </div>
     </>
   );

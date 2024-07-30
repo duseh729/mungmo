@@ -38,8 +38,6 @@ const Header = ({ children, onClick, hamburgerClick, closeClick, zIndexTop }) =>
             <img src="/img/icons/close.png" alt="" />
           </button>}
       </div>
-
-      <div style={{ height: 40 }}></div>
     </div>
   );
 };

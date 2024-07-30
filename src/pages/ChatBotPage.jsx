@@ -17,7 +17,9 @@ const ChatBot = () => {
   const navigate = useNavigate();
 
   const [message, setMessage] = useState("");
-  const [answer, setAnswer] = useState(["어떤 문제가 있으신가요?\n궁금하신 점을 물어봐 주세요!\n질문에 이런 점들이 들어가면더 자세한 답변을 드릴 수 있어요:)\n(견종, 나이, 무게, 질환 등)"]);
+  const [answer, setAnswer] = useState([
+    "어떤 문제가 있으신가요?\n궁금하신 점을 물어봐 주세요!\n질문에 이런 점들이 들어가면더 자세한 답변을 드릴 수 있어요:)\n(견종, 나이, 무게, 질환 등)",
+  ]);
   const [question, setQuestion] = useState([]);
   const [loadingMessage, setLoadingMessage] = useState(""); // 로딩 메시지 상태
 
@@ -49,7 +51,7 @@ const ChatBot = () => {
       setMessage("");
     }
   };
-  
+
   useEffect(() => {
     if (messageEndRef.current) {
       messageEndRef.current.scrollIntoView({ behavior: "smooth" });
@@ -57,21 +59,21 @@ const ChatBot = () => {
   }, [answer, isPending]);
 
   return (
-    <div style={{ position: "relative", maxHeight: "100vh", overflow: 'auto' }}>
+    <div style={{ position: "relative", maxHeight: "100vh", overflow: "auto" }}>
       {chatModal && <ChatBotModal />}
       <Header onClick={() => navigate(-1)} hamburgerClick={() => setChatModal(true)}>
         AI 댕댕닥터와의 대화
       </Header>
 
-      <div style={{ backgroundColor: color.gray100, padding: 12 }}>
-        <p style={{ color: color.gray600, textAlign: "center" }} className="text12">
-          AI 댕댕닥터와의 대화는 참고용으로만 사용해주세요.
-          <br />
-          자세한 진단은 전문가와 상담해주세요.
-        </p>
-      </div>
-
       <div className="container">
+        <div style={{ backgroundColor: color.gray100, padding: 12 }}>
+          <p style={{ color: color.gray600, textAlign: "center" }} className="text12">
+            AI 댕댕닥터와의 대화는 참고용으로만 사용해주세요.
+            <br />
+            자세한 진단은 전문가와 상담해주세요.
+          </p>
+        </div>
+
         {answer.map((item, index) => (
           <div key={index}>
             <Answer>{item}</Answer>
@@ -107,8 +109,8 @@ const ChatBot = () => {
             }
           }}
         />
-        <button onClick={handleSendMessage}>
-          <img src="/img/button/send-message.png" alt="" />
+        <button onClick={handleSendMessage} style={{padding:0, cursor: 'pointer'}}>
+          <img style={{display: 'flex'}} src="/img/button/send-message.svg" alt="" />
         </button>
       </div>
     </div>
