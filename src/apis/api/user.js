@@ -19,13 +19,15 @@ export const fetchUserData = async () => {
 };
 
 // 펫 정보 수정하는 함수
-export const updatePet = async ({name, breed, weight, birth, etc, walkingGoal})=>{
+export const updatePet = async (name, breed, weight, birth, etc, walkingGoal)=>{
   const token = localStorage.getItem('accessToken');
 // console.log(token);
   if (!token) {
     // console.error('No access token found');
     throw new Error('No access token found, updatePet');
   }
+
+  // console.log(name, breed, weight, birth, etc, walkingGoal);
 
   try {
     const { data } = await authInstance.patch('user/pet', {petSeq:9, name, breed, weight, birth, etc, walkingGoal} );
