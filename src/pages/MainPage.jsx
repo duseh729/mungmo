@@ -18,7 +18,7 @@ const Main = () => {
     const getUserData = async () => {
       try {
         const userData = await fetchUserData();
-        console.log(userData)
+        // console.log(userData)
         if (userData.httpStatusCode === 200) {
           setDogInfo({ info: "용맹하고 씩씩한 동네 인싸", ...userData.data.pet });
           setIsLogin(true);
