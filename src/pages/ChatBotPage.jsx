@@ -65,7 +65,7 @@ const ChatBot = () => {
         AI 댕댕닥터와의 대화
       </Header>
 
-      <div className="container" style={{minHeight:0}}>
+      <div className="container" style={{ minHeight: 0 }}>
         <div style={{ backgroundColor: color.gray100, padding: 12 }}>
           <p style={{ color: color.gray600, textAlign: "center" }} className="text12">
             AI 댕댕닥터와의 대화는 참고용으로만 사용해주세요.
@@ -74,16 +74,18 @@ const ChatBot = () => {
           </p>
         </div>
 
-        {answer.map((item, index) => (
-          <div key={index}>
-            <Answer>{item}</Answer>
-            {index < question.length ? <Question>{question[index]}</Question> : null}
-          </div>
-        ))}
-        {isPending && <LoadingAnswer />}
+        <div style={{ paddingBottom: 76 }}>
+          {answer.map((item, index) => (
+            <div key={index}>
+              <Answer>{item}</Answer>
+              {index < question.length ? <Question>{question[index]}</Question> : null}
+            </div>
+          ))}
+          {isPending && <LoadingAnswer />}
+        </div>
       </div>
 
-      <div ref={messageEndRef} style={{ height: 76 }}></div>
+      <div ref={messageEndRef}></div>
 
       <div
         style={{
@@ -109,8 +111,8 @@ const ChatBot = () => {
             }
           }}
         />
-        <button onClick={handleSendMessage} style={{padding:0, cursor: 'pointer'}}>
-          <img style={{display: 'flex'}} src="/img/button/send-message.svg" alt="" />
+        <button onClick={handleSendMessage} style={{ padding: 0, cursor: "pointer" }}>
+          <img style={{ display: "flex" }} src="/img/button/send-message.svg" alt="" />
         </button>
       </div>
     </div>
