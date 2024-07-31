@@ -13,7 +13,7 @@ const WalkHistoryComponent = () => {
         산책 기록
       </p>
 
-      <div style={{ padding: "12px 0", display: "flex", flexDirection:'column',gap: 12, overflow: 'auto', maxHeight: "300px" }}>
+      <div style={{ padding: "12px 0", display: "flex", flexDirection:'column',gap: 12, overflow: 'auto', maxHeight: "150px" }}>
         {walkHistory
           .find(
             (historyItem) => historyItem.date.getTime() == pickedDate.getTime()
