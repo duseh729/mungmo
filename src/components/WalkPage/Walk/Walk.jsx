@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 
-import { nowWalkState, totalSecondState, walkTimeState } from "../../../recoil/walk";
+import { nowWalkState, todayWalkState, totalSecondState, walkTimeState } from "../../../recoil/walk";
 
 import { color } from "../../../constant/style";
 
@@ -12,7 +12,8 @@ import Button from "../../common/Button";
 
 import { dogInfoState } from "../../../recoil/dog";
 
-import styles from '../../../css/WalkPage/Walk.module.scss'
+import styles from "../../../css/WalkPage/Walk.module.scss";
+import { useNavigate } from "react-router-dom";
 
 const Walk = ({ dogName }) => {
   const [walkTime, setWalkTime] = useRecoilState(walkTimeState);
@@ -21,6 +22,8 @@ const Walk = ({ dogName }) => {
   const [dogInfo, setDogInfo] = useRecoilState(dogInfoState);
 
   const [walkState, setWalkState] = useState("");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const newState = nowWalk.finish ? "산책후" : nowWalk.now ? "산책중" : "산책전";
@@ -50,7 +53,7 @@ const Walk = ({ dogName }) => {
       </h1>
 
       <div className={styles.gifWrapper}>
-        {nowWalk.finish || walkTime >= totalSeconds ? (
+        {nowWalk.finish && walkTime >= totalSeconds ? (
           <img style={{ width: "100%" }} src={`/img/walkGIF/after-walk.gif`} alt="" />
         ) : walkState === "산책전" ? (
           <img style={{ width: "100%" }} src={`/img/walkGIF/before-walk.gif`} alt="" />
@@ -59,7 +62,7 @@ const Walk = ({ dogName }) => {
         )}
       </div>
 
-      <div style={{padding: "12px 0 8px 0", position: 'relative', top: -50}}>
+      <div style={{ padding: "12px 0 8px 0", position: "relative", top: -50 }}>
         <WalkTime />
 
         <Progress />
@@ -67,11 +70,24 @@ const Walk = ({ dogName }) => {
         <WalkState />
       </div>
 
+      {dogInfo.walkingGoal == null && (
+        <div style={{ margin: "14px 0 6px 0" }}>
+          <Button
+            onClick={() => {
+              navigate("/myPage");
+            }}
+          >
+            목표 설정하러 가기
+          </Button>
+        </div>
+      )}
+
       {nowWalk.finish && (
         <div style={{ margin: "14px 0 6px 0" }}>
           <Button
             onClick={() => {
               setNowWalk({ first: false, now: false, finish: false });
+              setWalkTime(0);
             }}
           >
             확인 완료

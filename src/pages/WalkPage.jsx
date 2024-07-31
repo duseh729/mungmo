@@ -84,7 +84,7 @@ const WalkPage = () => {
         </div>
         {walkMenu == "calendar" && <CalendarComponent />}
 
-        {walkMenu === "walk" && !nowWalk.finish && <StartStop />}
+        {walkMenu === "walk" && !nowWalk.finish && dogInfo.walkingGoal!=null && <StartStop />}
         {walkMenu === "calendar" && <WalkHistoryComponent />}
       </div>
     </>

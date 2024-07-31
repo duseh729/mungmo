@@ -3,7 +3,6 @@ import styles from "../../css/MainPage/Profile.module.scss";
 import { color } from "../../constant/style";
 
 const LoginProfile = ({ userName, dogType, profileContents }) => {
-  
   const dogs = [
     { breed: "골든 리트리버", introduce: "충직하고 온순한 애교쟁이" },
     { breed: "기본", introduce: "에너지 넘치는 사랑스런 귀염둥이" },
@@ -22,7 +21,7 @@ const LoginProfile = ({ userName, dogType, profileContents }) => {
   const contents = [
     ["나이", `${profileContents["birth"] - new Date().getFullYear() + 1}살`],
     ["몸무게", `${profileContents["weight"]}kg`],
-    ["산책 목표", profileContents["walkGoal"]],
+    ["산책 목표", profileContents["walkingGoal"]],
   ];
 
   return (
@@ -67,7 +66,7 @@ const LoginProfile = ({ userName, dogType, profileContents }) => {
           {contents.map((data, index) => (
             <div key={index}>
               <p style={{ opacity: 0.5, fontSize: 14 }}>{data[0]}</p>
-              <p className="text18 bold-text">{data[1] == null ? "-" : index == 2 ? `${data[1]}분` : data[1]}</p>
+              <p className="text18 bold-text">{data[1] <= 0 ? "-" : index == 2 ? `${data[1]}분` : data[1]}</p>
             </div>
           ))}
         </div>

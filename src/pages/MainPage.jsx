@@ -10,10 +10,12 @@ import { dogInfoState, dogInputState } from "../recoil/dog";
 import { isLoginState } from "../recoil/user";
 import { fetchUserData } from "../apis/api/user";
 import { fetchTodayWalkData } from "../apis/api/walk";
+import { todayWalkState } from "../recoil/walk";
 
 const Main = () => {
   const [isLogin, setIsLogin] = useRecoilState(isLoginState);
   const [dogInfo, setDogInfo] = useRecoilState(dogInfoState);
+  const [todayWalk, setTodayWalk] = useRecoilState(todayWalkState);
 
   useEffect(() => {
     const getUserData = async () => {
@@ -21,7 +23,7 @@ const Main = () => {
         const userData = await fetchUserData();
         // console.log(userData)
         if (userData.httpStatusCode === 200) {
-          setDogInfo({...userData.data.pet });
+          setDogInfo({ ...userData.data.pet });
           setIsLogin(true);
         }
       } catch (error) {
@@ -29,14 +31,16 @@ const Main = () => {
         // 추가적인 에러 처리 로직을 여기에 추가할 수 있습니다.
       }
     };
-    const getTodayWalkData = async ()=>{
+    const getTodayWalkData = async () => {
       try {
         const todayWalkData = await fetchTodayWalkData();
         // console.log(todayWalkData);
+        const [minutes, seconds] = todayWalkData.data["todayWalkTime"].split(":").map(Number);
+        setTodayWalk({ todayWalkTime: minutes * 60 + seconds, round: todayWalkData.data.round });
       } catch (error) {
         throw new Error(error);
       }
-    }
+    };
 
     if (localStorage.getItem("accessToken")) {
       getUserData();

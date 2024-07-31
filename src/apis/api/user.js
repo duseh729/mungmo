@@ -32,7 +32,7 @@ export const fetchUserData = async () => {
  * @returns
  */
 export const updatePet = async (seq, name, breed, weight, birth, etc, walkingGoal) => {
-  console.log(seq, name, breed, weight, birth, etc, walkingGoal);
+  // console.log(seq, name, breed, weight, birth, etc, walkingGoal);
   const token = localStorage.getItem("accessToken");
   // console.log(token);
   if (!token) {

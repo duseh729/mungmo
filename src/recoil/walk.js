@@ -6,17 +6,23 @@ export const walkTimeState = atom({
   default: 0,
 });
 
-// export const totalSecondState = selector({
-//   key: "totalSecondState",
-//   get: ({ get }) => {
-//     const dogInfo = get(dogInfoState);
-//     const totalSecond = dogInfo["산책 목표"] * 60;
-//     return totalSecond;
-//   },
-// });
-export const totalSecondState = atom({
+export const totalSecondState = selector({
   key: "totalSecondState",
-  default: 2400
+  get: ({ get }) => {
+    const dogInfo = get(dogInfoState);
+    let totalSecond;
+    if (dogInfo["walkingGoal"] != null) {
+      totalSecond = dogInfo["walkingGoal"] * 60;
+    } else {
+      totalSecond = 60;
+    }
+    return totalSecond;
+  },
+});
+
+export const todayWalkState = atom({
+  key: "todayWalkState",
+  default: { todayWalkTime: 0, round: "" },
 });
 
 export const nowWalkState = atom({
@@ -32,7 +38,15 @@ export const walkModalState = atom({
 export const walkHistoryState = atom({
   key: "walkHistoryState",
   default: [
-    { date: new Date(2024, 6, 10), walkData: [["16:30:13", "17:00:00"], ["16:30:13", "17:00:00"], ["16:30:13", "17:00:00"], ["16:30:13", "17:00:00"]] }, // 2024년 7월 25일
+    {
+      date: new Date(2024, 6, 10),
+      walkData: [
+        ["16:30:13", "17:00:00"],
+        ["16:30:13", "17:00:00"],
+        ["16:30:13", "17:00:00"],
+        ["16:30:13", "17:00:00"],
+      ],
+    }, // 2024년 7월 25일
     { date: new Date(2024, 5, 15), walkData: [["16:30:00", "17:00:00"]] }, // 2024년 6월 15일
   ],
 });
