@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { color } from "../constant/style";
 
@@ -10,23 +10,42 @@ import StartStop from "../components/WalkPage/Walk/StartStop";
 import Modal from "../components/common/Modal";
 
 import { useRecoilState } from "recoil";
-import { nowWalkState, walkModalState } from "../recoil/walk";
+import { nowWalkState, todayWalkState, walkModalState } from "../recoil/walk";
 import WalkHistoryComponent from "../components/WalkPage/Calendar/WalkHistoryComponent";
 
 import { useNavigate } from "react-router-dom";
 import { dogInfoState } from "../recoil/dog";
+import { fetchTodayWalkData } from "../apis/api/walk";
 
 const WalkPage = () => {
   const [walkMenu, setWalkMenu] = useState("walk");
   const [isOpen, setIsOpen] = useRecoilState(walkModalState);
   const [nowWalk, setNowWalk] = useRecoilState(nowWalkState);
   const [dogInfo, setDogInfo] = useRecoilState(dogInfoState);
+  const [todayWalk, setTodayWalk] = useRecoilState(todayWalkState);
 
   const navigate = useNavigate();
 
   const walkMenuHandler = menu => {
     setWalkMenu(menu);
   };
+  
+  useEffect(() => {
+    const getTodayWalkData = async () => {
+      try {
+        const todayWalkData = await fetchTodayWalkData();
+        // console.log(todayWalkData);
+        const [minutes, seconds] = todayWalkData.data["todayWalkTime"].split(":").map(Number);
+        setTodayWalk({ todayWalkTime: minutes * 60 + seconds, round: todayWalkData.data.round });
+      } catch (error) {
+        throw new Error(error);
+      }
+    };
+
+    if (localStorage.getItem("accessToken")) {
+      getTodayWalkData();
+    }
+  }, [nowWalk.finish, isOpen]);
 
   return (
     <>
