@@ -35,13 +35,15 @@ const LoginPage = () => {
           <button
             key={item}
             onClick={() => {
+              const redirect_uri = `${import.meta.env.VITE_MY_URL}/redirection`;
               if (item == "kakao") {
-                const redirect_uri = `${import.meta.env.VITE_MY_URL}/redirection`;
                 window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${
                   import.meta.env.VITE_KAKAO_KEY
                 }&redirect_uri=${redirect_uri}&response_type=code`;
-              }else if (item =='naver'){
-                window.location.href = "https://naver.com"
+              } else if (item == "naver") {
+                window.location.href = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${
+                  import.meta.env.VITE_NAVER_KEY
+                }&state=test&redirect_uri=${redirect_uri}`;
               }
             }}
           >
