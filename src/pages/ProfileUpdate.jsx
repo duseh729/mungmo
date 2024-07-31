@@ -129,7 +129,7 @@ const ProfileUpdate = () => {
         <Button
           onClick={async () => {
             // console.log(nameValue, breedValue, weightValue, birthValue, etcValue, walkingGoalValue);
-            const res = await updatePet(nameValue, breedValue, weightValue, birthValue, etcValue, walkingGoalValue);
+            const res = await updatePet(dogInfo.seq, nameValue, breedValue, weightValue, birthValue, etcValue, walkingGoalValue);
             if (res.httpStatusCode == 200) {
               navigate("/");
             }

@@ -9,6 +9,7 @@ import Menu from "../components/MainPage/Menu";
 import { dogInfoState, dogInputState } from "../recoil/dog";
 import { isLoginState } from "../recoil/user";
 import { fetchUserData } from "../apis/api/user";
+import { fetchTodayWalkData } from "../apis/api/walk";
 
 const Main = () => {
   const [isLogin, setIsLogin] = useRecoilState(isLoginState);
@@ -20,7 +21,7 @@ const Main = () => {
         const userData = await fetchUserData();
         // console.log(userData)
         if (userData.httpStatusCode === 200) {
-          setDogInfo({ info: "용맹하고 씩씩한 동네 인싸", ...userData.data.pet });
+          setDogInfo({...userData.data.pet });
           setIsLogin(true);
         }
       } catch (error) {
@@ -28,9 +29,18 @@ const Main = () => {
         // 추가적인 에러 처리 로직을 여기에 추가할 수 있습니다.
       }
     };
+    const getTodayWalkData = async ()=>{
+      try {
+        const todayWalkData = await fetchTodayWalkData();
+        // console.log(todayWalkData);
+      } catch (error) {
+        throw new Error(error);
+      }
+    }
 
     if (localStorage.getItem("accessToken")) {
       getUserData();
+      getTodayWalkData();
     }
   }, [setDogInfo, setIsLogin, isLogin]);
 
