@@ -46,11 +46,11 @@ const Walk = ({ dogName }) => {
   }, [nowWalk.now, setWalkTime]);
 
   return (
-    <div style={{ position: "relative", height: "65vh" }}> 
+    <div style={{ position: "relative", height: "65vh" }}>
       <h1 style={{ textAlign: "center" }} className="bold-text text24 letter-spacing8">
         <span style={{ color: color.primaryColor }}>{dogInfo.name == undefined ? "임시" : dogInfo.name}</span> 와 함께
         <br />
-        {walkState}
+        {nowWalk.finish ? "즐거운 산책을 했어요!" : !nowWalk.first ? "산책하러 가요" : !nowWalk.now ? "다시 산책하러 갈까요?" : walkState}
       </h1>
 
       <div className={styles.gifWrapper}>
@@ -63,7 +63,7 @@ const Walk = ({ dogName }) => {
         )}
       </div>
 
-      <div  className={styles.clearfix} style={{ width: "100%", padding: "12px 0 8px 0", position: "absolute", bottom: 0, backgroundColor: "white"}}>
+      <div className={styles.clearfix} style={{ width: "100%", padding: "12px 0 8px 0", position: "absolute", bottom: 0, backgroundColor: "white" }}>
         <WalkTime />
 
         <Progress />
@@ -71,7 +71,7 @@ const Walk = ({ dogName }) => {
         <WalkState />
       </div>
 
-      <div style={{ margin: "120px 0 4px 0"}}>
+      <div style={{ margin: "120px 0 4px 0" }}>
         {dogInfo.walkingGoal == null && (
           <Button
             onClick={() => {
