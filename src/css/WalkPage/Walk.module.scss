@@ -5,3 +5,9 @@
     mix-blend-mode: darken;
   }
 }
+
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}

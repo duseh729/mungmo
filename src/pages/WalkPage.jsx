@@ -77,6 +77,7 @@ const WalkPage = () => {
             padding: "12px 16px",
             backgroundColor: "white",
             borderRadius: 10,
+            height: nowWalk.finish ? 642 : 562
           }}
         >
           <SelectWalkMenu walkMenu={walkMenu} walkMenuHandler={walkMenuHandler} />

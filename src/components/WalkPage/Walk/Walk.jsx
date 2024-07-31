@@ -45,7 +45,7 @@ const Walk = ({ dogName }) => {
   }, [nowWalk.now, setWalkTime]);
 
   return (
-    <div>
+    <div style={{ position: "relative", height: "65vh" }}> 
       <h1 style={{ textAlign: "center" }} className="bold-text text24 letter-spacing8">
         <span style={{ color: color.primaryColor }}>{dogInfo.name == undefined ? "임시" : dogInfo.name}</span> 와 함께
         <br />
@@ -53,7 +53,7 @@ const Walk = ({ dogName }) => {
       </h1>
 
       <div className={styles.gifWrapper}>
-        {nowWalk.finish && walkTime >= totalSeconds ? (
+        {nowWalk.finish ? (
           <img style={{ width: "100%" }} src={`/img/walkGIF/after-walk.gif`} alt="" />
         ) : walkState === "산책전" ? (
           <img style={{ width: "100%" }} src={`/img/walkGIF/before-walk.gif`} alt="" />
@@ -62,7 +62,7 @@ const Walk = ({ dogName }) => {
         )}
       </div>
 
-      <div style={{ padding: "12px 0 8px 0", position: "relative", top: -50 }}>
+      <div  className={styles.clearfix} style={{ width: "100%", padding: "12px 0 8px 0", position: "absolute", bottom: 0, backgroundColor: "white"}}>
         <WalkTime />
 
         <Progress />
@@ -70,8 +70,8 @@ const Walk = ({ dogName }) => {
         <WalkState />
       </div>
 
-      {dogInfo.walkingGoal == null && (
-        <div style={{ margin: "14px 0 6px 0" }}>
+      <div style={{ margin: "120px 0 4px 0"}}>
+        {dogInfo.walkingGoal == null && (
           <Button
             onClick={() => {
               navigate("/myPage");
@@ -79,11 +79,9 @@ const Walk = ({ dogName }) => {
           >
             목표 설정하러 가기
           </Button>
-        </div>
-      )}
+        )}
 
-      {nowWalk.finish && (
-        <div style={{ margin: "14px 0 6px 0" }}>
+        {nowWalk.finish && (
           <Button
             onClick={() => {
               setNowWalk({ first: false, now: false, finish: false });
@@ -92,8 +90,8 @@ const Walk = ({ dogName }) => {
           >
             확인 완료
           </Button>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

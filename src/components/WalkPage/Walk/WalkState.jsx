@@ -1,11 +1,16 @@
 import { useRecoilState } from "recoil";
 import { dogInfoState } from "../../../recoil/dog";
+import { nowWalkState, todayWalkState, walkTimeState } from "../../../recoil/walk";
+
 import { color } from "../../../constant/style";
-import { todayWalkState } from "../../../recoil/walk";
+import Button from "../../common/Button";
 
 const WalkState = () => {
   const [dogInfo, setDogInfo] = useRecoilState(dogInfoState);
-  const [todayWalk, setTodayWalk] = useRecoilState(todayWalkState)
+  const [todayWalk, setTodayWalk] = useRecoilState(todayWalkState);
+  const [nowWalk, setNowWalk] = useRecoilState(nowWalkState);
+  const [walkTime, setWalkTime] = useRecoilState(walkTimeState);
+
   const walkStateItem = [
     { text: "산책 목표", state: dogInfo["walkingGoal"] },
     { text: "산책 횟수", state: todayWalk.round },
