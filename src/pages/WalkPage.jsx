@@ -65,7 +65,6 @@ const WalkPage = () => {
               ? `linear-gradient(to bottom, ${color.primaryColor00} 0%, ${color.primaryColor01} 49%, ${color.primaryColor30} 100%)`
               : `linear-gradient(to bottom, ${color.bg200} 0%, ${color.bg201} 49%, ${color.bg230} 100%)`,
           position: "relative",
-          height: "100vh"
         }}
       >
         {isOpen ? (
@@ -96,7 +95,7 @@ const WalkPage = () => {
             padding: "12px 16px",
             backgroundColor: "white",
             borderRadius: 10,
-            height: nowWalk.finish ? 642 : 562
+            height: nowWalk.finish && walkMenu=="walk" ? 642 : 'auto'
           }}
         >
           <SelectWalkMenu walkMenu={walkMenu} walkMenuHandler={walkMenuHandler} />
