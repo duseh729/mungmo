@@ -14,6 +14,7 @@ import { dogInfoState } from "../../../recoil/dog";
 
 import styles from "../../../css/WalkPage/Walk.module.scss";
 import { useNavigate } from "react-router-dom";
+import { walk } from "../../../apis/api/walk";
 
 const Walk = ({ dogName }) => {
   const [walkTime, setWalkTime] = useRecoilState(walkTimeState);
@@ -74,7 +75,7 @@ const Walk = ({ dogName }) => {
         {dogInfo.walkingGoal == null && (
           <Button
             onClick={() => {
-              navigate("/myPage");
+              navigate("/profile-update");
             }}
           >
             목표 설정하러 가기
@@ -86,6 +87,8 @@ const Walk = ({ dogName }) => {
             onClick={() => {
               setNowWalk({ first: false, now: false, finish: false });
               setWalkTime(0);
+
+              walk();
             }}
           >
             확인 완료

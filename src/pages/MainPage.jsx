@@ -34,7 +34,7 @@ const Main = () => {
     const getTodayWalkData = async () => {
       try {
         const todayWalkData = await fetchTodayWalkData();
-        // console.log(todayWalkData);
+        console.log(todayWalkData);
         const [minutes, seconds] = todayWalkData.data["todayWalkTime"].split(":").map(Number);
         setTodayWalk({ todayWalkTime: minutes * 60 + seconds, round: todayWalkData.data.round });
       } catch (error) {

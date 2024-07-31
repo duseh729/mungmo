@@ -1,5 +1,6 @@
 import { useRecoilState } from "recoil";
 import { nowWalkState, walkModalState } from "../../../recoil/walk";
+import { walk, walkPause } from "../../../apis/api/walk";
 
 const StartStop = () => {
   const [nowWalk, setNowWalk] = useRecoilState(nowWalkState);
@@ -13,6 +14,7 @@ const StartStop = () => {
             <button
               onClick={() => {
                 setNowWalk({ first: true, now: false });
+                walkPause();
               }}
             >
               <img src="/img/button/pause.png" alt="" />
@@ -21,6 +23,7 @@ const StartStop = () => {
               onClick={() => {
                 setNowWalk({ first: true, now: false });
                 setWalkModal(true);
+                walkPause();
               }}
             >
               <img src="/img/button/stop.png" alt="" />
@@ -31,6 +34,7 @@ const StartStop = () => {
             <button
               onClick={() => {
                 setNowWalk({ first: true, now: true });
+                walkPause();
               }}
             >
               <img src="/img/button/start.png" alt="" />
@@ -39,6 +43,7 @@ const StartStop = () => {
               onClick={() => {
                 setNowWalk({ first: true, now: false });
                 setWalkModal(true);
+                walkPause();
               }}
             >
               <img src="/img/button/stop.png" alt="" />
@@ -49,6 +54,7 @@ const StartStop = () => {
         <button
           onClick={() => {
             setNowWalk({ first: true, now: true });
+            walk();
           }}
         >
           <img src="/img/button/first-start.png" alt="" />
