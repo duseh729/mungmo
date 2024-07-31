@@ -26,6 +26,8 @@ const WalkTime = () => {
         ) : (
           <span style={{ color: color.gray600 }}>아쉽지만, 다음에는 목표를 달성해봐요!</span>
         )
+      ) : !nowWalk.first ? (
+        <span style={{ color: color.gray600 }}>산책을 기록해 보세요</span>
       ) : (
         <span style={{ color: color.gray600 }}>조금만 더 달려볼까요?</span>
       )}
