@@ -31,7 +31,7 @@ const WalkState = () => {
             }}
           >
             <span className="text18 bold-text" style={{ color: color.gray900 }}>
-              {i === 0 && (item.state === null || item.state <= 0) ? "-" : typeof item.state == "string" ? item.state : `${item.state}분`}
+              {i === 0 && (item.state === null || item.state <= 0) ? "-" : i===1 ? `${item.state}회차` : `${item.state}분`}
             </span>
             <span className="text14" style={{ marginTop: "4px", color: color.gray500 }}>
               {item.text}

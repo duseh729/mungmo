@@ -37,18 +37,7 @@ export const walkModalState = atom({
 
 export const walkHistoryState = atom({
   key: "walkHistoryState",
-  default: [
-    {
-      date: new Date(2024, 6, 10),
-      walkData: [
-        ["16:30:13", "17:00:00"],
-        ["16:30:13", "17:00:00"],
-        ["16:30:13", "17:00:00"],
-        ["16:30:13", "17:00:00"],
-      ],
-    }, // 2024년 7월 25일
-    { date: new Date(2024, 5, 15), walkData: [["16:30:00", "17:00:00"]] }, // 2024년 6월 15일
-  ],
+  default: [new Date(2024, 6, 10), new Date(2024, 5, 15)],
 });
 
 export const pickedDateState = atom({
