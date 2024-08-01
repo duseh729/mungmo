@@ -95,7 +95,7 @@ const WalkPage = () => {
             padding: "12px 16px",
             backgroundColor: "white",
             borderRadius: 10,
-            height: nowWalk.finish && walkMenu=="walk" ? 642 : 'auto'
+            height: (nowWalk.finish || dogInfo.walkingGoal===null) && walkMenu=="walk" ? 642 : 'auto'
           }}
         >
           <SelectWalkMenu walkMenu={walkMenu} walkMenuHandler={walkMenuHandler} />

@@ -8,6 +8,7 @@ import moment from "moment/moment";
 
 import { useRecoilState } from "recoil";
 import { pickedDateState, walkHistoryState } from "../../../recoil/walk";
+import { fetchCalendarData } from "../../../apis/api/calendar";
 
 const CalendarComponent = () => {
   const [value, setValue] = useState(new Date());
@@ -15,7 +16,7 @@ const CalendarComponent = () => {
   const [specificDates, setSpecificDates] = useRecoilState(walkHistoryState);
   const [pickedDate, setPickedDate] = useRecoilState(pickedDateState);
 
-  const tileClassName = ({ date, view }) => {
+  function tileClassName({ date, view }){
     // view가 "month"인 경우에만 특정 날짜에 스타일을 적용합니다.
     if (
       view === "month" &&
@@ -27,8 +28,15 @@ const CalendarComponent = () => {
   };
 
   useEffect(()=>{
-    // console.log(pickedDate);
-  }, [pickedDate])
+    try {
+      const getCalendarData = async()=>{
+        const calendarData = fetchCalendarData();
+        console.log(calendarData)
+      }
+    } catch (error) {
+      throw new Error(error);
+    }
+  }, [])
 
   return (
     <div>
