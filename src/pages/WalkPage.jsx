@@ -10,7 +10,7 @@ import StartStop from "../components/WalkPage/Walk/StartStop";
 import Modal from "../components/common/Modal";
 
 import { useRecoilState } from "recoil";
-import { nowWalkState, todayWalkState, walkModalState } from "../recoil/walk";
+import { nowWalkState, todayWalkState, walkModalState, walkTimeState } from "../recoil/walk";
 import WalkHistoryComponent from "../components/WalkPage/Calendar/WalkHistoryComponent";
 
 import { useNavigate } from "react-router-dom";
@@ -23,13 +23,14 @@ const WalkPage = () => {
   const [nowWalk, setNowWalk] = useRecoilState(nowWalkState);
   const [dogInfo, setDogInfo] = useRecoilState(dogInfoState);
   const [todayWalk, setTodayWalk] = useRecoilState(todayWalkState);
+  const [walkTime, setWalkTime] = useRecoilState(walkTimeState);
 
   const navigate = useNavigate();
 
   const walkMenuHandler = menu => {
     setWalkMenu(menu);
   };
-  
+
   useEffect(() => {
     const getTodayWalkData = async () => {
       try {
@@ -45,7 +46,11 @@ const WalkPage = () => {
     if (localStorage.getItem("accessToken")) {
       getTodayWalkData();
     }
-  }, [nowWalk.finish, isOpen]);
+  }, [nowWalk, isOpen, walkTime]);
+
+  useEffect(() => {
+    console.log("Updated todayWalk:", todayWalk);
+  }, [todayWalk]);
 
   return (
     <>
@@ -56,7 +61,7 @@ const WalkPage = () => {
       >
         산책하기
       </Header>
-      
+
       <div
         className="container"
         style={{
@@ -95,7 +100,7 @@ const WalkPage = () => {
             padding: "12px 16px",
             backgroundColor: "white",
             borderRadius: 10,
-            height: (nowWalk.finish || dogInfo.walkingGoal===null) && walkMenu=="walk" ? 642 : 'auto'
+            height: (nowWalk.finish || dogInfo.walkingGoal === null) && walkMenu == "walk" ? 642 : "auto",
           }}
         >
           <SelectWalkMenu walkMenu={walkMenu} walkMenuHandler={walkMenuHandler} />
@@ -103,7 +108,7 @@ const WalkPage = () => {
         </div>
         {walkMenu == "calendar" && <CalendarComponent />}
 
-        {walkMenu === "walk" && !nowWalk.finish && dogInfo.walkingGoal!=null && <StartStop />}
+        {walkMenu === "walk" && !nowWalk.finish && dogInfo.walkingGoal != null && <StartStop />}
         {walkMenu === "calendar" && <WalkHistoryComponent />}
       </div>
     </>

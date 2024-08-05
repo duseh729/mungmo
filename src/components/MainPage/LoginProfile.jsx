@@ -53,18 +53,19 @@ const LoginProfile = ({ userName, dogType, profileContents }) => {
           </h1>
 
           <p style={{ color: "white" }} className="text14 letter-spacing2">
-            {dogs.find(dog => dog.breed === dogType)?.introduce || "에너지 넘치는 사랑스런 귀염둥이"} 
+            {dogs.find(dog => dog.breed === dogType)?.introduce || "에너지 넘치는 사랑스런 귀염둥이"}
           </p>
         </div>
 
         <div
           style={{
-            background: `linear-gradient(to right, ${color.lightPrimaryColor}, ${color.primaryColor})`,
+            // background: `linear-gradient(to right, ${color.lightPrimaryColor}, ${color.primaryColor})`,
+              background: 'rgba(255,255,255,0.1)'
           }}
           className={styles.profileContentsWrapper}
         >
           {contents.map((data, index) => (
-            <div key={index}>
+            <div key={index} style={{ borderRight: index !== 2 && "1px solid #FFFFFF50" }}>
               <p style={{ opacity: 0.5, fontSize: 14 }}>{data[0]}</p>
               <p className="text18 bold-text">{data[1] <= 0 ? "-" : index == 2 ? `${data[1]}분` : data[1]}</p>
             </div>
