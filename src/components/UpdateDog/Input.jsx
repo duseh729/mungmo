@@ -45,21 +45,23 @@ const Input = ({ label, type, setIsDisabled = () => {}, value, setValue }) => {
     <div style={{ display: "flex", flexDirection: "column", position: "relative", marginBottom: type === "text" ? 28 : 12 }}>
       <div>
         <span style={{ color: color.gray700, padding: "0 12px", marginBottom: 8, display: "block" }} className="text14">{`${label}`}</span>
-        {maxTrigger ? (
-          label === "이름" ? (
-            <span style={{ color: "#ff4242" }}>15글자 이내로 입력해 주세요.</span>
-          ) : label === "무게 / kg" ? (
-            <span style={{ color: "#ff4242" }}>100이하의 숫자만 입력해 주세요.</span>
-          ) : label === "출생연도" ? (
-            <span style={{ color: "#ff4242" }}>출생연도 형식이 잘못되었어요. ex) 2024</span>
-          ) : label === "질환 / 수술" ? (
-            <span style={{ color: "#ff4242" }}>100글자 이내로 입력해 주세요.</span>
+        <div style={{ position: "absolute", right: 0, top: 0 }}>
+          {maxTrigger ? (
+            label === "이름" ? (
+              <span style={{ color: "#ff4242" }}>15글자 이내로 입력해 주세요.</span>
+            ) : label === "무게 / kg" ? (
+              <span style={{ color: "#ff4242" }}>100이하의 숫자만 입력해 주세요.</span>
+            ) : label === "출생연도" ? (
+              <span style={{ color: "#ff4242" }}>출생연도 형식이 잘못되었어요. ex) 2024</span>
+            ) : label === "질환 / 수술" ? (
+              <span style={{ color: "#ff4242" }}>100글자 이내로 입력해 주세요.</span>
+            ) : (
+              ""
+            )
           ) : (
             ""
-          )
-        ) : (
-          ""
-        )}
+          )}
+        </div>
       </div>
 
       {type === "dropdown" ? (
@@ -122,7 +124,7 @@ const Input = ({ label, type, setIsDisabled = () => {}, value, setValue }) => {
             }
 
             // 무게 검증
-            if (label === "무게 / kg" && inputValue > 100) {
+            if ((label === "무게 / kg" && inputValue > 100) || inputValue < 0) {
               setMaxTrigger(true);
               isValid = false;
             }
@@ -136,7 +138,11 @@ const Input = ({ label, type, setIsDisabled = () => {}, value, setValue }) => {
             // 유효한 값인 경우에만 value 업데이트
             if (isValid) {
               setMaxTrigger(false);
-              setValue(inputValue);
+              if (label === "무게 / kg") {
+                setValue(Math.round(inputValue * 10) / 10);
+              } else {
+                setValue(inputValue);
+              }
             }
           }}
           className={`${styles.input} ${maxTrigger ? styles.inputOverMax : ""}`}
