@@ -24,7 +24,7 @@ const UpdateName = () => {
 
   return (
     <>
-      <Header closeClick={() => {}}>1/5</Header>
+      <Header onClick={() => {navigate('/login')}} closeClick={()=>{navigate('/login')}}>1/5</Header>
 
       <div className="container" style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "93vh" }}>
         <div>

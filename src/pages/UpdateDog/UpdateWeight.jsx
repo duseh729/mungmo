@@ -18,7 +18,7 @@ const UpdateWeight = () => {
 
   return (
     <>
-      <Header closeClick={() => {}}>3/5</Header>
+      <Header onClick={() => {navigate(-1)}} closeClick={()=>{navigate('/login')}}>3/5</Header>
 
       <div className="container" style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "93vh" }}>
         <div>

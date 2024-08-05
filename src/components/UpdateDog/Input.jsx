@@ -1,22 +1,38 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../css/UpdateDog/Input.module.scss";
 import { color } from "../../constant/style";
+import { useRecoilState } from "recoil";
+import { dogInputState } from "../../recoil/dog";
 
 const options = ["직접 입력", "말티즈", "프렌치 불독", "푸들", "포메라니안", "치와와", "시츄", "비숑프리제", "리트리버", "웰시코기", "시바 이누"];
 
-const Input = ({ label, type, setIsDisabled=()=>{}, value, setValue }) => {
+const Input = ({ label, type, setIsDisabled = () => {}, value, setValue }) => {
   const [maxTrigger, setMaxTrigger] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [dogInput, setDogInput] = useRecoilState(dogInputState);
 
   useEffect(() => {
-    if (value.length > 0 || value>=1990) {
+    if (value.length > 0 || value >= 1990) {
       // console.log("disabled false")
       setIsDisabled(false);
     } else {
       setIsDisabled(true);
     }
   }, [value]);
+
+  useEffect(() => {
+    if (dogInput[valueRecoil[label]] !== undefined) {
+      setValue(dogInput[valueRecoil[label]]);
+    }
+  }, []);
+  const valueRecoil = {
+    이름: "name",
+    "무게 / kg": "weight",
+    출생연도: "birth",
+    "질환 / 수술": "etc",
+    견종: "breed",
+  };
 
   const placeholderText = {
     이름: "이름을 입력해 주세요.",
@@ -26,9 +42,9 @@ const Input = ({ label, type, setIsDisabled=()=>{}, value, setValue }) => {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", position: "relative", marginBottom: type==="text" ? 28 : 12 }}>
+    <div style={{ display: "flex", flexDirection: "column", position: "relative", marginBottom: type === "text" ? 28 : 12 }}>
       <div>
-        <span style={{color: color.gray700, padding: '0 12px'}} className="text14">{`${label}`}</span>
+        <span style={{ color: color.gray700, padding: "0 12px", marginBottom: 8, display: "block" }} className="text14">{`${label}`}</span>
         {maxTrigger ? (
           label === "이름" ? (
             <span style={{ color: "#ff4242" }}>15글자 이내로 입력해 주세요.</span>
@@ -83,7 +99,7 @@ const Input = ({ label, type, setIsDisabled=()=>{}, value, setValue }) => {
               setValue(inputValue);
             }
           }}
-          className={`${styles.input} ${maxTrigger ? styles.inputOverMax : ""} semi-bold-text`}
+          className={`${styles.input} ${maxTrigger ? styles.inputOverMax : ""}`}
           placeholder={placeholderText[label]}
           value={value}
           onBlur={() => {
@@ -187,25 +203,25 @@ const ModalItem = ({ title, setValue, setModalOpen }) => {
       >
         <img style={{ width: 28, height: 28 }} src={`/img/dogProfileSmall/${title}.png`} alt="" />
         <span className="bold-text text16">{title}</span>
-      {clicked && title === "직접 입력" && (
-        <div >
-          <input
-            type="text"
-            placeholder="직접 입력"
-            onChange={e => setValue(e.target.value)}
-            style={{
-              marginTop: 10,
-              padding: 8,
-              borderRadius: 8,
-              border: `1px solid ${color.gray100}`,
-              position: 'absolute',
-              width:"80%"
-            }}
-            onClick={e => e.stopPropagation()}
-            className={`${styles.input} semi-bold-text`}
-          />
-        </div>
-      )}
+        {clicked && title === "직접 입력" && (
+          <div>
+            <input
+              type="text"
+              placeholder="직접 입력"
+              onChange={e => setValue(e.target.value)}
+              style={{
+                marginTop: 10,
+                padding: 8,
+                borderRadius: 8,
+                border: `1px solid ${color.gray100}`,
+                position: "absolute",
+                width: "80%",
+              }}
+              onClick={e => e.stopPropagation()}
+              className={`${styles.input} semi-bold-text`}
+            />
+          </div>
+        )}
       </div>
     </>
   );

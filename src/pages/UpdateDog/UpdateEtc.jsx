@@ -27,7 +27,16 @@ const UpdateEtc = () => {
 
   return (
     <>
-      <Header closeClick={() => {}}>5/5</Header>
+      <Header
+        onClick={() => {
+          navigate(-1);
+        }}
+        closeClick={() => {
+          navigate("/login");
+        }}
+      >
+        5/5
+      </Header>
 
       <div className="container" style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "93vh" }}>
         <div>
@@ -63,6 +72,7 @@ const UpdateEtc = () => {
                 navigate("/");
               }
             }}
+            isDisabled={isDisabled}
           >
             완료
           </Button>

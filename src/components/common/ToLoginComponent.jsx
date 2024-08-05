@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Button from "./Button";
+import { color } from "../../constant/style";
 
 const ToLoginComponent = ({ children }) => {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ const ToLoginComponent = ({ children }) => {
       }}
     >
       <div style={{ display: "flex", alignItems: "center", flexDirection: "column", textAlign: "center", gap: 52, width: '100%' }}>
-        <p className="text24">{children}</p>
+        <p className="text24" style={{color: color.gray900}}>{children}</p>
         <Button onClick={()=>{navigate('/login')}}>로그인하러 가기</Button>
       </div>
     </div>

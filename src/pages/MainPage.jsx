@@ -11,6 +11,7 @@ import { isLoginState } from "../recoil/user";
 import { fetchUserData } from "../apis/api/user";
 import { fetchTodayWalkData } from "../apis/api/walk";
 import { todayWalkState } from "../recoil/walk";
+import { isOpenChat } from "../apis/api/chat";
 
 const Main = () => {
   const [isLogin, setIsLogin] = useRecoilState(isLoginState);
@@ -42,10 +43,19 @@ const Main = () => {
         throw new Error(error);
       }
     };
+    const getIsOpenChat = async ()=>{
+      try {
+        const isOpenChatResponse = await isOpenChat();
+        // console.log()
+      } catch (error) {
+        throw new Error("getIsOpenChat: ", error);
+      }
+    }
 
     if (localStorage.getItem("accessToken")) {
       getUserData();
       getTodayWalkData();
+      getIsOpenChat();
     }
   }, [setDogInfo, setIsLogin, isLogin]);
 
