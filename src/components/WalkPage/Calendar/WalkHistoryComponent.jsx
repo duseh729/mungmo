@@ -6,7 +6,8 @@ import { useEffect, useState } from "react";
 import { fetchTodayCalendarData } from "../../../apis/api/calendar";
 
 const WalkHistoryComponent = () => {
-  const [pickedDate, setPickedDate] = useRecoilState(pickedDateState);
+  const [pickedDate, setPickedDate] = useRecoilState(pickedDateState);  
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
 
   const [todayWalk, setTodayWalk] = useState([]);
 
@@ -48,7 +49,7 @@ const WalkHistoryComponent = () => {
         산책 기록
       </p>
 
-      <div style={{ padding: "12px 0", display: "flex", flexDirection: "column", gap: 12, overflow: "auto", maxHeight: "150px" }}>
+      <div style={{ padding: "12px 0", display: "flex", flexDirection: "column", gap: 12, overflow: "auto", maxHeight: windowHeight-565 }}>
         {todayWalk.map((data, index)=>{
           return <div key={index}><WalkHistoryItem startTime={data.startTime} endTime={data.endTime} totalTime={data.totalTime} /></div>
         })}
@@ -58,30 +59,6 @@ const WalkHistoryComponent = () => {
 };
 
 const WalkHistoryItem = ({ startTime, endTime, totalTime }) => {
-  // // 시간을 "오후 4시 00분" 형식으로 변환하는 함수
-  // const formatTime = time => {
-  //   const [hours, minutes, seconds] = time.split(":").map(Number);
-  //   const period = hours >= 12 ? "오후" : "오전";
-  //   const adjustedHours = hours % 12 || 12; // 0인 경우 12로 변환
-  //   return `${period} ${adjustedHours}시 ${minutes.toString().padStart(2, "0")}분`;
-  // };
-
-  // // 시간을 "30분 00초" 형식으로 변환하는 함수
-  // const formatDuration = (start, end) => {
-  //   const [startHours, startMinutes, startSeconds] = start.split(":").map(Number);
-  //   const [endHours, endMinutes, endSeconds] = end.split(":").map(Number);
-
-  //   const startDate = new Date();
-  //   startDate.setHours(startHours, startMinutes, startSeconds);
-  //   const endDate = new Date();
-  //   endDate.setHours(endHours, endMinutes, endSeconds);
-
-  //   const durationInSeconds = (endDate - startDate) / 1000;
-  //   const minutes = Math.floor(durationInSeconds / 60);
-  //   const seconds = durationInSeconds % 60;
-
-  //   return `${minutes}분 ${seconds.toString().padStart(2, "0")}초`;
-  // };
 
   return (
     <div
