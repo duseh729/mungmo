@@ -55,7 +55,7 @@ const UpdateEtc = () => {
 
               if (result.httpStatusCode === 201) {
                 sessionStorage.removeItem("kat");
-                navigate("/");
+                navigate("/signup-complete");
               }
             }}
           >
@@ -69,7 +69,7 @@ const UpdateEtc = () => {
 
               if (result.httpStatusCode === 201) {
                 sessionStorage.removeItem("kat");
-                navigate("/");
+                navigate("/signup-complete");
               }
             }}
             isDisabled={isDisabled}
