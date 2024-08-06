@@ -47,7 +47,7 @@ const Walk = ({ dogName }) => {
 
   return (
     <div style={{ position: "relative", height: "65vh" }}>
-      <h1 style={{ textAlign: "center" }} className="bold-text text24 letter-spacing8">
+      <h1 style={{ textAlign: "center", marginTop: 12 }} className="bold-text text24 letter-spacing8">
         <span style={{ color: color.primaryColor }}>{dogInfo.name == undefined ? "임시" : dogInfo.name}</span> 와 함께
         <br />
         {nowWalk.finish ? "즐거운 산책을 했어요!" : !nowWalk.first ? "산책하러 가요" : !nowWalk.now ? "다시 산책하러 갈까요?" : walkState}

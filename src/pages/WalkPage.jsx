@@ -49,7 +49,7 @@ const WalkPage = () => {
   }, [nowWalk, isOpen, walkTime]);
 
   useEffect(() => {
-    console.log("Updated todayWalk:", todayWalk);
+    // console.log("Updated todayWalk:", todayWalk);
   }, [todayWalk]);
 
   return (
@@ -97,7 +97,7 @@ const WalkPage = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            padding: "12px 16px",
+            padding: "0 16px",
             backgroundColor: "white",
             borderRadius: 10,
             height: (nowWalk.finish || dogInfo.walkingGoal === null) && walkMenu == "walk" ? 642 : "auto",

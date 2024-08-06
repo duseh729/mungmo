@@ -44,7 +44,7 @@ const WalkHistoryComponent = () => {
   }, [pickedDate]);
 
   return (
-    <div style={{ margin: "12px 0" }}>
+    <div>
       <p style={{ color: color.gray900 }} className="text18 line-spacing2">
         산책 기록
       </p>

@@ -19,7 +19,12 @@ const CalendarComponent = () => {
 
   function tileClassName({ date, view }) {
     // view가 "month"인 경우에만 특정 날짜에 스타일을 적용합니다.
-    if (view === "month" && walkHistory.some(d => d === date.toDateString())) {
+    const tempMonth = date.getMonth()+1 < 10 ? '0' + (date.getMonth()+1) : date.getMonth()+1
+    const tempDate = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+
+    const formattedDate = `${date.getFullYear()}-${tempMonth}-${tempDate}`
+    // console.log(formattedDate, walkHistory[0])
+    if (view === "month" && walkHistory.some(d => d === formattedDate)) {
       return "walk-tile";
     }
     return null;
@@ -64,7 +69,7 @@ const CalendarComponent = () => {
   }, [pickedDate, setPickedDate]);
 
   return (
-    <div>
+    <div style={{margin: '24px 0 26px 0'}}>
       <p className="text24 light-text" style={{ textAlign: "center" }}>
         {pickedDate.getFullYear() === new Date().getFullYear() && pickedDate.getMonth() === new Date().getMonth()
           ? "이번 달에는"
