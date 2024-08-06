@@ -3,6 +3,7 @@ import styles from "../../css/UpdateDog/Input.module.scss";
 import { color } from "../../constant/style";
 import { useRecoilState } from "recoil";
 import { dogInputState } from "../../recoil/dog";
+import Button from "../common/Button";
 
 const options = ["직접 입력", "말티즈", "프렌치 불독", "푸들", "포메라니안", "치와와", "시츄", "비숑프리제", "리트리버", "웰시코기", "시바 이누"];
 
@@ -12,24 +13,24 @@ const Input = ({ label, type, setIsDisabled = () => {}, value, setValue }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [dogInput, setDogInput] = useRecoilState(dogInputState);
 
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+
   useEffect(() => {
-    if(label==="출생연도"){
-      if(value<1990 || value>2024){
+    if (label === "출생연도") {
+      if (value < 1990 || value > 2024) {
         setMaxTrigger(true);
         setIsDisabled(true);
-      }else{
+      } else {
         setMaxTrigger(false);
         setIsDisabled(false);
       }
-
-    }else{
-      if (value.length > 0 || value>0) {
+    } else {
+      if (value.length > 0 || value > 0) {
         // console.log("disabled false")
         setIsDisabled(false);
       } else {
         setIsDisabled(true);
       }
-
     }
   }, [value]);
 
@@ -182,11 +183,20 @@ const Input = ({ label, type, setIsDisabled = () => {}, value, setValue }) => {
               flexWrap: "wrap",
               gap: 8,
               justifyContent: "space-between",
+              height: windowHeight - 260,
+              padding: '0 8px'
             }}
           >
             {options.map((item, index) => (
               <ModalItem key={index} title={item} setValue={setValue} setModalOpen={setModalOpen} />
             ))}
+              <Button
+                onClick={() => {
+                  setModalOpen(false);
+                }}
+              >
+                선택완료
+              </Button>
           </div>
         </>
       )}
@@ -215,12 +225,11 @@ const ModalItem = ({ title, setValue, setModalOpen }) => {
             setClicked(!clicked);
           } else {
             setValue(title);
-            setModalOpen(false);
           }
         }}
       >
         <img style={{ width: 28, height: 28 }} src={`/img/dogProfileSmall/${title}.png`} alt="" />
-        <span className="bold-text text16">{title}</span>
+        <span className="bold-text text14">{title}</span>
         {clicked && title === "직접 입력" && (
           <div>
             <input
@@ -228,12 +237,14 @@ const ModalItem = ({ title, setValue, setModalOpen }) => {
               placeholder="직접 입력"
               onChange={e => setValue(e.target.value)}
               style={{
-                marginTop: 10,
-                padding: 8,
+                // marginTop: 2,
+                padding: 16,
                 borderRadius: 8,
                 border: `1px solid ${color.gray100}`,
                 position: "absolute",
-                width: "80%",
+                width: "89%",
+                top: 82,
+                left:22
               }}
               onClick={e => e.stopPropagation()}
               className={`${styles.input} semi-bold-text`}
