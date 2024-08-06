@@ -55,7 +55,7 @@ const Main = () => {
     if (localStorage.getItem("accessToken")) {
       getUserData();
       getTodayWalkData();
-      getIsOpenChat();
+      // getIsOpenChat();
     }
   }, [setDogInfo, setIsLogin, isLogin]);
 

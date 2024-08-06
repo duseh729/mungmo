@@ -13,11 +13,23 @@ const Input = ({ label, type, setIsDisabled = () => {}, value, setValue }) => {
   const [dogInput, setDogInput] = useRecoilState(dogInputState);
 
   useEffect(() => {
-    if (value.length > 0 || value >= 1990) {
-      // console.log("disabled false")
-      setIsDisabled(false);
-    } else {
-      setIsDisabled(true);
+    if(label==="출생연도"){
+      if(value<1990 || value>2024){
+        setMaxTrigger(true);
+        setIsDisabled(true);
+      }else{
+        setMaxTrigger(false);
+        setIsDisabled(false);
+      }
+
+    }else{
+      if (value.length > 0 || value>0) {
+        // console.log("disabled false")
+        setIsDisabled(false);
+      } else {
+        setIsDisabled(true);
+      }
+
     }
   }, [value]);
 
@@ -52,7 +64,7 @@ const Input = ({ label, type, setIsDisabled = () => {}, value, setValue }) => {
             ) : label === "무게 / kg" ? (
               <span style={{ color: "#ff4242" }}>100이하의 숫자만 입력해 주세요.</span>
             ) : label === "출생연도" ? (
-              <span style={{ color: "#ff4242" }}>출생연도 형식이 잘못되었어요. ex) 2024</span>
+              <span style={{ color: "#ff4242" }}>1990~2024의 숫자만 입력해 주세요.</span>
             ) : label === "질환 / 수술" ? (
               <span style={{ color: "#ff4242" }}>100글자 이내로 입력해 주세요.</span>
             ) : (
@@ -124,7 +136,7 @@ const Input = ({ label, type, setIsDisabled = () => {}, value, setValue }) => {
             }
 
             // 무게 검증
-            if ((label === "무게 / kg" && inputValue > 100) || inputValue < 0) {
+            if (label === "무게 / kg" && (inputValue > 100 || inputValue < 0)) {
               setMaxTrigger(true);
               isValid = false;
             }

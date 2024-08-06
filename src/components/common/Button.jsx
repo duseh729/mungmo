@@ -10,7 +10,7 @@ const Button = ({ children, color=colorConstant.gray900, bgColor=null,  onClick,
         borderRadius: "10px",
         width: "100%",
         padding: "19px",
-        border: color === "white" ? `1px solid ${colorConstant.gray200}` : null,
+        // border: color === "white" ? `1px solid ${colorConstant.gray200}` : null,
         cursor: isDisabled ? 'auto' : 'pointer',
         fontFamily: "SUIT-Bold",
         fontSize: 16

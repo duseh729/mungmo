@@ -15,10 +15,11 @@ const ChatBotModal = () => {
   const [isLogin, setIsLogin] = useRecoilState(isLoginState);
   const [chatModal, setChatModal] = useRecoilState(chatModalState);
 
-  const [tempChatData, setTempChatDate] = useState([
-    { title: "혈뇨", contents: [["무엇을 도와줄까", "그건 나도 모름"], ["강아지가 혈뇨를 누어"]] },
-    { title: "혈뇨", contents: [["무엇을 도와줄까", "그건 나도 모름"], ["강아지가 혈뇨를 누어"]] },
-  ]);
+  // const [tempChatData, setTempChatDate] = useState([
+  //   { title: "혈뇨", contents: [["무엇을 도와줄까", "그건 나도 모름"], ["강아지가 혈뇨를 누어"]] },
+  //   { title: "혈뇨", contents: [["무엇을 도와줄까", "그건 나도 모름"], ["강아지가 혈뇨를 누어"]] },
+  // ]);
+  const [tempChatData, setTempChatDate] = useState(null);
 
   return (
     <>
@@ -66,7 +67,7 @@ const ChatBotModal = () => {
           </div>
 
           <div style={{marginTop:12, padding: "12px 16px", display: "flex", gap: 8, flexDirection: "column" }}>
-            {tempChatData.map((item, index) => (
+            {tempChatData==null ? <p>최근 대화 기록이 없습니다.</p> : tempChatData.map((item, index) => (
               <ChatHistoryItem key={index} title={item.title} />
             ))}
           </div>
