@@ -22,7 +22,7 @@ const Main = () => {
     const getUserData = async () => {
       try {
         const userData = await fetchUserData();
-        // console.log(userData)
+        // console.log(userData);
         // console.log(localStorage.getItem("accessToken"));
         if (userData.httpStatusCode === 200) {
           setDogInfo({ ...userData.data.pet });

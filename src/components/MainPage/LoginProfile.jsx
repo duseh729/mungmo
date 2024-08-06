@@ -19,7 +19,7 @@ const LoginProfile = ({ userName, dogType, profileContents }) => {
   ];
 
   const contents = [
-    ["나이", `${profileContents["birth"] - new Date().getFullYear() + 1}살`],
+    ["나이", `${new Date().getFullYear() - profileContents["birth"] + 1}살`],
     ["몸무게", `${profileContents["weight"]}kg`],
     ["산책 목표", profileContents["walkingGoal"]],
   ];

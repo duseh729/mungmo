@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { dogInputState } from "../../recoil/dog";
 import { useRecoilState } from "recoil";
 import { color } from "../../constant/style";
-import { signup } from "../../apis/api/socialLogin";
+import { signup, login } from "../../apis/api/socialLogin";
 
 const UpdateEtc = () => {
   const navigate = useNavigate();
