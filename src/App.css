@@ -21,7 +21,7 @@ button {
 }
 
 #main {
-  background: url("/img/main.png");
+  background: url("/img/main.jpg");
   background-size: cover;
   max-height: 100vh;
 }
