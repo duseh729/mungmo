@@ -12,13 +12,6 @@ const authAPI = (url, options = {}) => {
   // console.log(token)
   interceptors(instance);
   return instance;
-  return axios.create({
-    baseURL: url,
-    headers: {
-      Authorization: token ? `Bearer ${token}` : "",
-    },
-    ...options,
-  });
 };
 
 const API_URL = import.meta.env.VITE_API_URL;

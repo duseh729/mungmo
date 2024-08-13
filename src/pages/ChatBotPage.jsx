@@ -11,7 +11,8 @@ import LoadingAnswer from "../components/ChatBotPage/LoadingAnswer";
 
 import { color } from "../constant/style";
 import { chatModalState } from "../recoil/chat";
-import { postChat } from "../apis/api/chat";
+import { isLoginPostChat, postChat } from "../apis/api/chat";
+import { isLoginState } from "../recoil/user";
 
 const ChatBot = () => {
   const navigate = useNavigate();
@@ -26,15 +27,18 @@ const ChatBot = () => {
   const messageEndRef = useRef(null);
 
   const [chatModal, setChatModal] = useRecoilState(chatModalState);
+  const [isLogin, setIsLogin] = useRecoilState(isLoginState);
+
+  const getMutationFn = () => (isLogin ? isLoginPostChat : postChat);
 
   const { mutate, isPending, isError, error, isSuccess } = useMutation({
-    mutationFn: postChat,
+    mutationFn: getMutationFn(),
     onMutate: () => {
       // 요청 시작 시 로딩 메시지 설정
       setLoadingMessage("대답을 기다리는 중...");
     },
     onSuccess: data => {
-      // console.log(data.data.answer);
+      console.log(data.data.answer);
       setAnswer(prevAnswers => [...prevAnswers, data.data.answer]);
       setLoadingMessage(""); // 성공 시 로딩 메시지 제거
     },
@@ -47,6 +51,7 @@ const ChatBot = () => {
   const handleSendMessage = () => {
     if (message.trim() !== "") {
       setQuestion(prevQuestions => [...prevQuestions, message]);
+      // console.log("sendMessage: ", message);
       mutate(message);
       setMessage("");
     }

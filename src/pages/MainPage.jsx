@@ -46,13 +46,14 @@ const Main = () => {
     const getIsOpenChat = async ()=>{
       try {
         const isOpenChatResponse = await isOpenChat();
-        // console.log()
+        console.log(isOpenChatResponse);
       } catch (error) {
         throw new Error("getIsOpenChat: ", error);
       }
     }
 
     if (localStorage.getItem("accessToken")) {
+      // console.log(localStorage.getItem("accessToken"))
       getUserData();
       getTodayWalkData();
       // getIsOpenChat();

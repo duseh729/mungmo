@@ -31,12 +31,12 @@ button {
   background-color: white;
   position: relative;
 }
-@media screen and (min-width: 765px) {
+@media screen and (min-width: 844px) {
   #web-view {
     left: 55%;
   }
 }
-@media screen and (max-width: 764px) {
+@media screen and (max-width: 844px) {
   #web-view {
     position: relative;
     margin: auto;

@@ -4,7 +4,7 @@ export const interceptors = (instance) => {
       const token = localStorage.getItem('accessToken')
 
       config.headers = {
-        authorization: token ? `Bearer ${token}` : null,
+        Authorization: token ? `Bearer ${token}` : null,
       }
       return config
     },
